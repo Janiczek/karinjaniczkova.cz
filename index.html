@@ -1,0 +1,1088 @@
+<!doctype html>
+<html lang="cs">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Karin Janiczková - Koučink</title>
+        <style>
+            @font-face {
+                font-family: Literata;
+                src: url("fonts/Literata-VariableFont_opsz,wght.ttf")
+                    format("truetype");
+            }
+            @font-face {
+                font-family: Literata;
+                src: url("fonts/Literata-Italic-VariableFont_opsz,wght.ttf")
+                    format("truetype");
+                font-style: italic;
+            }
+            @font-face {
+                font-family: "Work Sans";
+                src: url("fonts/WorkSans-VariableFont_wght.ttf")
+                    format("truetype");
+            }
+            @font-face {
+                font-family: "Work Sans";
+                src: url("fonts/WorkSans-Italic-VariableFont_wght.ttf")
+                    format("truetype");
+                font-style: italic;
+            }
+            :root {
+                --cream: #f5eae0;
+                --cream-2: #eeddcb;
+                --peach: #e15c42;
+                --gold: #c97a34;
+                --olive: #5c4b41;
+                --teal: #6e9c8c;
+                --deepteal: #3a2c24;
+                --ink: #31281f;
+                --line: rgba(34, 50, 45, 0.12);
+                /* lighter variants used specifically for the drifting mist blobs */
+                --blob-green: #7cc093;
+                --blob-peach: #e46f58;
+                --blob-gold: #cf8747;
+                --blob-teal: #6e9c8c;
+                --blob-deepteal: #a3838e;
+            }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body {
+                background: var(--cream);
+                color: var(--ink);
+                font-family: "Work Sans", sans-serif;
+                font-weight: 400;
+                line-height: 1.65;
+            }
+            h1,
+            h2,
+            h3 {
+                font-family: "Literata", serif;
+                font-weight: 400;
+                letter-spacing: -0.01em;
+            }
+            .grain {
+                position: fixed;
+                inset: 0;
+                pointer-events: none;
+                z-index: 999;
+                opacity: 0.055;
+                mix-blend-mode: overlay;
+            }
+            /* very subtle dot accent — small, low opacity, used sparingly */
+            .dot-accent {
+                position: absolute;
+                width: 220px;
+                height: 220px;
+                pointer-events: none;
+                z-index: 1;
+                background-image: radial-gradient(
+                    circle,
+                    var(--teal) 1px,
+                    transparent 1.3px
+                );
+                background-size: 9px 9px;
+                opacity: 0.09;
+                -webkit-mask-image: radial-gradient(
+                    circle,
+                    black 0%,
+                    transparent 70%
+                );
+                mask-image: radial-gradient(circle, black 0%, transparent 70%);
+            }
+
+            header {
+                position: sticky;
+                top: 0;
+                z-index: 50;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 24px 6vw;
+                background: rgba(246, 234, 217, 0.82);
+                backdrop-filter: blur(10px);
+            }
+            .logo {
+                font-family: "Literata", serif;
+                font-size: 1.25rem;
+                letter-spacing: 0.02em;
+                color: var(--deepteal);
+            }
+            nav a {
+                color: var(--ink);
+                text-decoration: none;
+                font-size: 0.92rem;
+                margin-left: 2.2rem;
+            }
+            nav a:hover {
+                color: var(--deepteal);
+            }
+            .cta-small {
+                background: var(--deepteal);
+                color: var(--cream);
+                padding: 10px 20px;
+                border-radius: 999px;
+                font-weight: 500;
+            }
+            .cta-small:hover {
+                color: var(--cream);
+                opacity: 0.9;
+            }
+
+            section {
+                padding: 9vw 6vw;
+                position: relative;
+                overflow: hidden;
+            }
+
+            /* HERO — soft radial mist like reference image */
+            .hero {
+                min-height: 88vh;
+                display: grid;
+                grid-template-columns: 1.05fr 0.95fr;
+                align-items: center;
+                gap: 4vw;
+                position: relative;
+                overflow: hidden;
+                background: var(--cream);
+            }
+            .mist-layer {
+                position: absolute;
+                inset: 0;
+                z-index: 0;
+                overflow: hidden;
+                pointer-events: none;
+            }
+            .blob {
+                position: absolute;
+                border-radius: 50%;
+                filter: blur(48px);
+                mix-blend-mode: multiply;
+            }
+            .mist-hero .b1 {
+                width: 48vw;
+                height: 48vw;
+                top: -14%;
+                left: -10%;
+                background: var(--blob-teal);
+                opacity: 0.6;
+                animation: breatheH1 16s ease-in-out infinite;
+            }
+            .mist-hero .b2 {
+                width: 42vw;
+                height: 42vw;
+                top: -2%;
+                left: 30%;
+                background: var(--blob-gold);
+                opacity: 0.56;
+                animation: breatheH2 19s ease-in-out infinite;
+                animation-delay: -4s;
+            }
+            .mist-hero .b3 {
+                width: 52vw;
+                height: 52vw;
+                top: 12%;
+                left: 54%;
+                background: var(--blob-peach);
+                opacity: 0.62;
+                animation: breatheH3 22s ease-in-out infinite;
+                animation-delay: -9s;
+            }
+            @keyframes breatheH1 {
+                0%,
+                100% {
+                    transform: scale(0.92);
+                    opacity: 0.42;
+                }
+                50% {
+                    transform: scale(1.32);
+                    opacity: 0.5;
+                }
+            }
+            @keyframes breatheH2 {
+                0%,
+                100% {
+                    transform: scale(0.9);
+                    opacity: 0.38;
+                }
+                50% {
+                    transform: scale(1.3);
+                    opacity: 0.5;
+                }
+            }
+            @keyframes breatheH3 {
+                0%,
+                100% {
+                    transform: scale(0.9);
+                    opacity: 0.44;
+                }
+                50% {
+                    transform: scale(1.34);
+                    opacity: 0.6;
+                }
+            }
+            .hero-copy,
+            .hero-photo {
+                position: relative;
+                z-index: 1;
+            }
+            .hero-copy {
+                background: color-mix(in srgb, var(--cream) 80%, transparent);
+                backdrop-filter: blur(22px);
+                -webkit-backdrop-filter: blur(22px);
+                border-radius: 32px;
+                padding: 3rem 2.6rem;
+            }
+            .hero-copy,
+            .hero-photo {
+                position: relative;
+                z-index: 1;
+            }
+            .hero-copy {
+                background: color-mix(in srgb, var(--cream) 80%, transparent);
+                backdrop-filter: blur(22px);
+                -webkit-backdrop-filter: blur(22px);
+                border-radius: 32px;
+                padding: 3rem 2.6rem;
+            }
+            .hero-copy .eyebrow {
+                display: inline-block;
+                font-size: 0.78rem;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: var(--deepteal);
+                margin-bottom: 1.4rem;
+                font-weight: 600;
+            }
+            .hero-copy h1 {
+                font-size: clamp(2.5rem, 4.8vw, 4rem);
+                line-height: 1.1;
+                margin-bottom: 1.4rem;
+                color: var(--deepteal);
+            }
+            .hero-copy h1 em {
+                font-style: italic;
+                color: var(--deepteal);
+                text-decoration: underline;
+                text-decoration-color: var(--gold);
+                text-decoration-thickness: 2px;
+                text-underline-offset: 6px;
+            }
+            .hero-copy p {
+                max-width: 38ch;
+                font-size: 1.08rem;
+                color: var(--ink);
+                margin-bottom: 2.2rem;
+            }
+            .btn-row {
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+            .btn-primary {
+                background: var(--deepteal);
+                color: var(--cream);
+                padding: 15px 30px;
+                border-radius: 999px;
+                text-decoration: none;
+                font-size: 0.95rem;
+                font-weight: 500;
+                transition:
+                    transform 0.2s ease,
+                    box-shadow 0.2s ease;
+                display: inline-block;
+                box-shadow: 0 8px 24px rgba(27, 58, 52, 0.18);
+            }
+            .btn-primary:hover {
+                transform: translateY(-2px);
+            }
+            .btn-ghost {
+                border: 1.5px solid var(--deepteal);
+                color: var(--deepteal);
+                padding: 13.5px 28px;
+                border-radius: 999px;
+                text-decoration: none;
+                font-size: 0.95rem;
+            }
+
+            .hero-photo {
+                position: relative;
+                aspect-ratio: 4/5;
+                border-radius: 28px;
+                overflow: hidden;
+                box-shadow: 0 20px 50px rgba(27, 58, 52, 0.16);
+            }
+            .hero-photo img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+            .hero-photo .grainy {
+                position: absolute;
+                inset: 0;
+                opacity: 0.12;
+                mix-blend-mode: overlay;
+            }
+            .hero-photo .frame-glow {
+                position: absolute;
+                inset: 0;
+                box-shadow: inset 0 0 60px rgba(27, 58, 52, 0.1);
+                pointer-events: none;
+            }
+
+            /* ABOUT */
+            .about {
+                display: grid;
+                grid-template-columns: 0.85fr 1.15fr;
+                gap: 5vw;
+                align-items: start;
+            }
+            .tag {
+                font-size: 0.78rem;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: var(--deepteal);
+                font-weight: 600;
+                margin-bottom: 1rem;
+                display: block;
+            }
+            .about h2 {
+                font-size: clamp(2rem, 3.4vw, 2.7rem);
+                margin-bottom: 1.6rem;
+                color: var(--deepteal);
+            }
+            .about p {
+                color: var(--ink);
+                margin-bottom: 1.2rem;
+                max-width: 56ch;
+            }
+            .about-figure {
+                background: linear-gradient(
+                    160deg,
+                    color-mix(in srgb, var(--peach) 55%, transparent),
+                    color-mix(in srgb, var(--teal) 22%, transparent)
+                );
+                border-radius: 24px;
+                padding: 2.6rem;
+                position: relative;
+            }
+            .about-figure blockquote {
+                font-family: "Literata", serif;
+                font-style: italic;
+                font-size: 1.4rem;
+                line-height: 1.5;
+                color: var(--deepteal);
+            }
+            .about-figure cite {
+                display: block;
+                margin-top: 1.2rem;
+                font-style: normal;
+                font-size: 0.85rem;
+                color: var(--deepteal);
+                font-weight: 600;
+            }
+
+            /* SLUZBY */
+            .services {
+                background: linear-gradient(
+                    180deg,
+                    var(--cream),
+                    var(--cream-2)
+                );
+            }
+            .section-head {
+                text-align: center;
+                max-width: 56ch;
+                margin: 0 auto 4rem;
+            }
+            .section-head .tag {
+                display: inline-block;
+            }
+            .section-head h2 {
+                font-size: clamp(2rem, 3.4vw, 2.7rem);
+                margin-top: 0.6rem;
+                color: var(--deepteal);
+            }
+            .section-head p {
+                color: var(--ink);
+                margin-top: 1rem;
+            }
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.8rem;
+            }
+            .card {
+                background: var(--cream);
+                border-radius: 22px;
+                padding: 2.6rem 2.1rem;
+                position: relative;
+                box-shadow: 0 10px 30px rgba(34, 50, 45, 0.06);
+                transition:
+                    transform 0.25s ease,
+                    box-shadow 0.25s ease,
+                    background 0.25s ease;
+                display: block;
+                text-decoration: none;
+                color: inherit;
+                cursor: pointer;
+            }
+            .card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 18px 40px rgba(34, 50, 45, 0.14);
+                background: var(--cream-2);
+            }
+            .card:focus-visible {
+                outline: 2px solid var(--deepteal);
+                outline-offset: 3px;
+            }
+            .card .icon {
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                margin-bottom: 1.5rem;
+                background: radial-gradient(
+                    circle at 35% 30%,
+                    var(--peach),
+                    var(--teal)
+                );
+            }
+            .card h3 {
+                font-size: 1.35rem;
+                margin-bottom: 0.8rem;
+                color: var(--deepteal);
+            }
+            .card p {
+                font-size: 0.94rem;
+                color: var(--ink);
+                margin-bottom: 1.6rem;
+            }
+            .card .card-link {
+                color: var(--deepteal);
+                font-size: 0.88rem;
+                text-decoration: none;
+                border-bottom: 1.5px solid var(--gold);
+                padding-bottom: 2px;
+            }
+
+            /* CENIK */
+            .pricing {
+                background: var(--cream-2);
+            }
+            .pricing-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.8rem;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+            .price-card {
+                border-radius: 24px;
+                padding: 2.8rem;
+                background: var(--cream);
+                border: 1.5px solid rgba(58, 44, 36, 0.16);
+                box-shadow: 0 10px 30px rgba(34, 50, 45, 0.08);
+            }
+            .price-card.highlight {
+                background: linear-gradient(
+                    160deg,
+                    var(--deepteal),
+                    color-mix(in srgb, var(--teal) 30%, var(--deepteal) 70%)
+                );
+                color: var(--cream);
+                border-color: transparent;
+            }
+            .price-card.highlight .price {
+                color: var(--cream);
+            }
+            .price-card h3 {
+                font-size: 1.3rem;
+                margin-bottom: 0.4rem;
+                color: var(--deepteal);
+            }
+            .price-card.highlight h3 {
+                color: var(--cream);
+            }
+            .price {
+                font-family: "Literata", serif;
+                font-size: 2.2rem;
+                margin: 1rem 0;
+                color: var(--deepteal);
+            }
+            .price span {
+                font-size: 0.95rem;
+                font-family: "Work Sans", sans-serif;
+                color: inherit;
+                font-weight: 500;
+            }
+            .price-card ul {
+                list-style: none;
+                margin: 1.4rem 0 2rem;
+            }
+            .price-card li {
+                padding: 0.4rem 0;
+                font-size: 0.92rem;
+                font-weight: 500;
+            }
+            .price-card li::before {
+                content: "· ";
+                color: var(--gold);
+                font-weight: 700;
+            }
+            .price-card .btn-primary {
+                width: 100%;
+                text-align: center;
+                box-sizing: border-box;
+            }
+            .price-card.highlight .btn-primary {
+                background: var(--cream);
+                color: var(--deepteal);
+            }
+
+            /* KONTAKT */
+            .contact {
+                position: relative;
+                overflow: hidden;
+                background: var(--cream-2);
+            }
+            .mist-layer2 {
+                position: absolute;
+                inset: 0;
+                z-index: 0;
+                overflow: hidden;
+                pointer-events: none;
+            }
+            .blob {
+                position: absolute;
+                border-radius: 50%;
+                filter: blur(48px);
+                mix-blend-mode: multiply;
+            }
+            .mist-contact .c1 {
+                width: 44vw;
+                height: 44vw;
+                top: -10%;
+                left: 14%;
+                background: var(--blob-peach);
+                opacity: 0.58;
+                animation: breatheC1 20s ease-in-out infinite;
+            }
+            .mist-contact .c2 {
+                width: 48vw;
+                height: 48vw;
+                top: 32%;
+                left: 64%;
+                background: var(--blob-teal);
+                opacity: 0.56;
+                animation: breatheC2 17s ease-in-out infinite;
+                animation-delay: -5s;
+            }
+            .mist-contact .c3 {
+                width: 36vw;
+                height: 36vw;
+                top: 56%;
+                left: 16%;
+                background: var(--blob-deepteal);
+                opacity: 0.46;
+                animation: breatheC3 21s ease-in-out infinite;
+                animation-delay: -8s;
+            }
+            .mist-contact .c4 {
+                width: 34vw;
+                height: 34vw;
+                top: 0%;
+                left: 70%;
+                background: var(--blob-gold);
+                opacity: 0.52;
+                animation: breatheC4 15s ease-in-out infinite;
+                animation-delay: -3s;
+            }
+            @keyframes breatheC1 {
+                0%,
+                100% {
+                    transform: scale(0.9);
+                    opacity: 0.4;
+                }
+                50% {
+                    transform: scale(1.3);
+                    opacity: 0.5;
+                }
+            }
+            @keyframes breatheC2 {
+                0%,
+                100% {
+                    transform: scale(0.9);
+                    opacity: 0.38;
+                }
+                50% {
+                    transform: scale(1.32);
+                    opacity: 0.5;
+                }
+            }
+            @keyframes breatheC3 {
+                0%,
+                100% {
+                    transform: scale(0.9);
+                    opacity: 0.32;
+                }
+                50% {
+                    transform: scale(1.28);
+                    opacity: 0.45;
+                }
+            }
+            @keyframes breatheC4 {
+                0%,
+                100% {
+                    transform: scale(0.9);
+                    opacity: 0.36;
+                }
+                50% {
+                    transform: scale(1.3);
+                    opacity: 0.5;
+                }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .blob {
+                    animation: none !important;
+                }
+            }
+            .contact-grid {
+                position: relative;
+                z-index: 1;
+                display: grid;
+                grid-template-columns: 1.1fr 0.8fr 1fr;
+                grid-template-rows: repeat(5, auto);
+                column-gap: 2vw;
+                row-gap: 1.3rem;
+                width: fit-content;
+                max-width: 80rem;
+                justify-self: center;
+            }
+            .contact-intro {
+                background: color-mix(in srgb, var(--cream) 78%, transparent);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border-radius: 28px;
+                padding: 2.2rem 2rem;
+                display: inline-block;
+            }
+            .contact h2 {
+                font-size: clamp(2rem, 3.4vw, 2.7rem);
+                margin-bottom: 1rem;
+                color: var(--deepteal);
+            }
+            .contact p.lead {
+                color: var(--ink);
+                max-width: 42ch;
+            }
+            /* form no longer creates its own box — its fields become direct
+     grid items of .contact-grid so we can line up rows precisely */
+            form {
+                display: contents;
+            }
+            .contact-form-fields {
+                grid-column: 1;
+                grid-row: 1/4;
+                align-self: end;
+                display: flex;
+                flex-direction: column;
+                gap: 1.3rem;
+            }
+            form button {
+                grid-column: 1;
+                grid-row: 4;
+            }
+            .contact-form-success {
+                grid-column: 1;
+                grid-row: 5;
+                text-align: center;
+            }
+            .contact-form-success.hidden {
+                display: none;
+            }
+            input,
+            textarea {
+                background: var(--cream);
+                border: 1px solid var(--line);
+                border-radius: 14px;
+                padding: 15px 18px;
+                font-family: "Work Sans", sans-serif;
+                font-size: 0.95rem;
+                color: var(--ink);
+                width: 100%;
+            }
+            textarea {
+                min-height: 120px;
+                resize: vertical;
+            }
+            input::placeholder,
+            textarea::placeholder {
+                color: rgba(58, 44, 36, 0.55);
+            }
+            .contact-details {
+                grid-column: 2;
+                grid-row: 1 / 4;
+                align-self: end;
+                display: flex;
+                flex-direction: column;
+                gap: 1.6rem;
+                background: color-mix(in srgb, var(--cream) 72%, transparent);
+                border-radius: 24px;
+                padding: 1.8rem 1.6rem;
+                backdrop-filter: blur(18px);
+            }
+            .contact-photo {
+                grid-column: 3;
+                grid-row: 1 / 4;
+                align-self: end;
+                width: 100%;
+                aspect-ratio: 2/3;
+                border-radius: 24px;
+                overflow: hidden;
+                box-shadow: 0 18px 44px rgba(27, 58, 52, 0.16);
+            }
+            .contact-photo img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+            .info-row {
+                display: flex;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            .info-row .dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: var(--gold);
+                margin-top: 8px;
+                flex-shrink: 0;
+            }
+            .info-row h4 {
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                color: var(--deepteal);
+                font-weight: 600;
+                margin-bottom: 0.3rem;
+            }
+            .info-row p {
+                font-size: 1.05rem;
+                color: var(--ink);
+            }
+
+            footer {
+                padding: 2.4rem 6vw;
+                text-align: center;
+                font-size: 0.85rem;
+                color: var(--ink);
+            }
+
+            @media (max-width: 860px) {
+                .hero {
+                    grid-template-columns: 1fr;
+                    min-height: auto;
+                    padding-top: 12vw;
+                }
+                .about,
+                .contact-grid {
+                    grid-template-columns: 1fr;
+                }
+                .cards {
+                    grid-template-columns: 1fr;
+                }
+                .pricing-grid {
+                    grid-template-columns: 1fr;
+                }
+                nav a:not(.cta-small) {
+                    display: none;
+                }
+                .contact-photo {
+                    max-width: 280px;
+                    margin-top: 1rem;
+                }
+                /* on a single column, let everything stack in document order instead
+       of using the desktop grid-row/column placement */
+                .contact-intro,
+                form input,
+                form textarea,
+                form button,
+                .contact-details,
+                .contact-photo {
+                    grid-column: 1;
+                    grid-row: auto;
+                    align-self: auto;
+                }
+                .contact-details {
+                    margin-top: 0.6rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <svg class="grain" xmlns="http://www.w3.org/2000/svg">
+            <filter id="n">
+                <feTurbulence
+                    type="fractalNoise"
+                    baseFrequency="0.85"
+                    numOctaves="2"
+                    stitchTiles="stitch"
+                />
+            </filter>
+            <rect width="100%" height="100%" filter="url(#n)" />
+        </svg>
+
+        <header>
+            <div class="logo">Karin Janiczková</div>
+            <nav>
+                <a href="#o-mne">O mně</a>
+                <a href="#sluzby">Služby</a>
+                <a href="#cenik">Ceník</a>
+                <a href="#kontakt" class="cta-small">Napište mi</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="mist-layer mist-hero">
+                <span class="blob b1"></span><span class="blob b2"></span
+                ><span class="blob b3"></span>
+            </div>
+            <div class="dot-accent" style="top: 8%; left: 4%"></div>
+            <div class="hero-copy">
+                <span class="eyebrow">Individuální koučink</span>
+                <h1>Prostor, kde se&nbsp;vaše myšlenky <em>urovnají</em>.</h1>
+                <p>
+                    Pomáhám lidem najít jasno v období změny — v práci, ve
+                    vztazích i v tom, co chtějí dál. Klidně, lidsky a bez frází.
+                </p>
+                <div class="btn-row">
+                    <a href="#kontakt" class="btn-primary"
+                        >Domluvit konzultaci</a
+                    >
+                    <a href="#o-mne" class="btn-ghost">Více o mně</a>
+                </div>
+            </div>
+            <div class="hero-photo">
+                <img src="images/foto1.jpg" alt="Karin Janiczková" />
+                <svg
+                    class="grainy"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="100%"
+                    height="100%"
+                >
+                    <filter id="n2">
+                        <feTurbulence
+                            type="fractalNoise"
+                            baseFrequency="0.9"
+                            numOctaves="2"
+                        />
+                    </filter>
+                    <rect width="100%" height="100%" filter="url(#n2)" />
+                </svg>
+                <div class="frame-glow"></div>
+            </div>
+        </section>
+
+        <section class="about" id="o-mne">
+            <div>
+                <span class="tag">Můj příběh</span>
+                <h2>Jsem Karin.</h2>
+                <p>
+                    Deset let jsem seděla na druhé straně stolu — v korporátu, v
+                    poradách, v rolích, kde jsem se ztrácela. Koučink mě naučil
+                    klást si jiné otázky. Dnes ho učím ostatní.
+                </p>
+                <p>
+                    Pracuji věcně a lidsky zároveň: žádná esoterika, žádné sliby
+                    zázraků. Jen upřímný rozhovor, který vám pomůže vidět
+                    vlastní situaci jasněji — a udělat další krok.
+                </p>
+            </div>
+            <div class="about-figure">
+                <blockquote>
+                    „Nechodím za klienty s odpověďmi. Chodím s otázkami, které
+                    jim pomůžou najít tu svoji.“
+                </blockquote>
+                <cite>Karin Janiczková, koučka</cite>
+            </div>
+        </section>
+
+        <section class="services" id="sluzby">
+            <div class="section-head">
+                <span class="tag">Jak spolupracujeme</span>
+                <h2>Moje služby</h2>
+                <p>
+                    Vyberte si formu, která vám teď dává smysl. Klidně to můžeme
+                    probrat i společně.
+                </p>
+            </div>
+            <div class="cards">
+                <a class="card" href="#kontakt">
+                    <div class="icon"></div>
+                    <h3>Individuální koučink</h3>
+                    <p>
+                        Pravidelná setkání zaměřená na vaše konkrétní téma —
+                        kariéra, rozhodování, změna směru.
+                    </p>
+                    <span class="card-link">Zjistit více →</span>
+                </a>
+                <a class="card" href="#kontakt">
+                    <div class="icon"></div>
+                    <h3>Workshop</h3>
+                    <p>
+                        Půldenní nebo celodenní workshop pro menší skupiny na
+                        míru vašemu tématu.
+                    </p>
+                    <span class="card-link">Zjistit více →</span>
+                </a>
+                <a class="card" href="#kontakt">
+                    <div class="icon"></div>
+                    <h3>Týmová dynamika</h3>
+                    <p>
+                        Facilitace pro týmy, které potřebují lépe komunikovat a
+                        společně najít směr.
+                    </p>
+                    <span class="card-link">Zjistit více →</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="pricing" id="cenik">
+            <div class="section-head">
+                <span class="tag">Ceník</span>
+                <h2>Vyberte si formát</h2>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Jednotlivé setkání</h3>
+                    <div class="price">1 500 Kč <span>/ 75 min</span></div>
+                    <ul>
+                        <li>Jedno konzultační setkání</li>
+                        <li>Online nebo osobně v Ostravě</li>
+                    </ul>
+                    <a
+                        href="#kontakt"
+                        class="btn-primary"
+                        style="
+                            background: transparent;
+                            border: 1.5px solid var(--deepteal);
+                            color: var(--deepteal);
+                        "
+                        >Rezervovat</a
+                    >
+                </div>
+                <div class="price-card highlight">
+                    <h3>Balíček 5 setkání</h3>
+                    <div class="price">7 000 Kč <span>/ 5×</span></div>
+                    <ul>
+                        <li>Pět setkání v průběhu 3 měsíců</li>
+                        <li>Průběžná textová podpora mezi setkáními</li>
+                        <li>Shrnutí a plán na závěr</li>
+                    </ul>
+                    <a href="#kontakt" class="btn-primary">Vybrat balíček</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="kontakt">
+            <div class="mist-layer mist-contact">
+                <span class="blob c1"></span><span class="blob c2"></span
+                ><span class="blob c3"></span><span class="blob c4"></span>
+            </div>
+            <div class="dot-accent" style="bottom: 5%; right: 6%"></div>
+            <form
+                method="post"
+                action="https://forms.un-static.com/forms/8640904163562e559d5845d7e5a6bc217beb3564"
+            >
+                <div class="contact-grid">
+                    <div class="contact-form-fields">
+                        <div class="contact-intro">
+                            <h2>Napište mi</h2>
+                            <p class="lead">
+                                Ozvu se do dvou pracovních dnů a domluvíme si
+                                nezávazný úvodní hovor.
+                            </p>
+                        </div>
+                        <input id="name" type="text" placeholder="Jméno" />
+                        <input id="email" type="email" placeholder="E-mail" />
+                        <textarea id="message" placeholder="Zpráva"></textarea>
+                    </div>
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                        style="border: none; cursor: pointer"
+                    >
+                        Odeslat zprávu
+                    </button>
+                    <p
+                        class="contact-form-success hidden"
+                        id="contact-form-success"
+                        role="status"
+                    >
+                        Zpráva byla odeslána. Brzy se vám ozvu.
+                    </p>
+                    <div class="contact-details">
+                        <div class="info-row">
+                            <span class="dot"></span>
+                            <div>
+                                <h4>Telefon</h4>
+                                <p>+420 734 143 500</p>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <span class="dot"></span>
+                            <div>
+                                <h4>E-mail</h4>
+                                <p>karin@janiczek.cz</p>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <span class="dot"></span>
+                            <div>
+                                <h4>Kde mě najdete</h4>
+                                <p>
+                                    Impact Hub
+                                    <br />
+                                    Sokolská třída 1263/24
+                                    <br />
+                                    702&nbsp;00&nbsp;Ostrava
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-photo">
+                        <img src="images/foto2.jpg" alt="Karin Janiczková" />
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <footer>© 2026 Karin Janiczková · Koučink</footer>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const params = new URLSearchParams(window.location.search);
+                if (params.get("success") === "1") {
+                    const successEl = document.getElementById(
+                        "contact-form-success",
+                    );
+                    const kontakt = document.getElementById("kontakt");
+
+                    if (successEl) {
+                        successEl.classList.remove("hidden");
+                    }
+
+                    if (kontakt) {
+                        kontakt.scrollIntoView();
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
