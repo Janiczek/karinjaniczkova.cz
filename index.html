@@ -48,6 +48,7 @@
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
+                text-wrap: pretty;
             }
             body {
                 background: var(--cream);
@@ -113,7 +114,7 @@
             nav a {
                 color: var(--ink);
                 text-decoration: none;
-                font-size: 0.92rem;
+                font-size: 1rem;
                 margin-left: 2.2rem;
             }
             nav a:hover {
@@ -249,7 +250,7 @@
             }
             .hero-copy .eyebrow {
                 display: inline-block;
-                font-size: 0.78rem;
+                font-size: 0.8125rem;
                 letter-spacing: 0.14em;
                 text-transform: uppercase;
                 color: var(--deepteal);
@@ -272,7 +273,7 @@
             }
             .hero-copy p {
                 max-width: 38ch;
-                font-size: 1.08rem;
+                font-size: 1rem;
                 color: var(--ink);
                 margin-bottom: 2.2rem;
             }
@@ -287,7 +288,7 @@
                 padding: 15px 30px;
                 border-radius: 999px;
                 text-decoration: none;
-                font-size: 0.95rem;
+                font-size: 1rem;
                 font-weight: 500;
                 transition:
                     transform 0.2s ease,
@@ -304,7 +305,7 @@
                 padding: 13.5px 28px;
                 border-radius: 999px;
                 text-decoration: none;
-                font-size: 0.95rem;
+                font-size: 1rem;
             }
 
             .hero-photo {
@@ -341,7 +342,7 @@
                 align-items: start;
             }
             .tag {
-                font-size: 0.78rem;
+                font-size: 0.8125rem;
                 letter-spacing: 0.14em;
                 text-transform: uppercase;
                 color: var(--deepteal);
@@ -375,14 +376,6 @@
                 font-size: 1.4rem;
                 line-height: 1.5;
                 color: var(--deepteal);
-            }
-            .about-figure cite {
-                display: block;
-                margin-top: 1.2rem;
-                font-style: normal;
-                font-size: 0.85rem;
-                color: var(--deepteal);
-                font-weight: 600;
             }
 
             /* SLUZBY */
@@ -456,13 +449,13 @@
                 color: var(--deepteal);
             }
             .card p {
-                font-size: 0.94rem;
+                font-size: 1rem;
                 color: var(--ink);
                 margin-bottom: 1.6rem;
             }
             .card .card-link {
                 color: var(--deepteal);
-                font-size: 0.88rem;
+                font-size: 0.875rem;
                 text-decoration: none;
                 border-bottom: 1.5px solid var(--gold);
                 padding-bottom: 2px;
@@ -513,7 +506,7 @@
                 color: var(--deepteal);
             }
             .price span {
-                font-size: 0.95rem;
+                font-size: 1rem;
                 font-family: "Work Sans", sans-serif;
                 color: inherit;
                 font-weight: 500;
@@ -524,7 +517,7 @@
             }
             .price-card li {
                 padding: 0.4rem 0;
-                font-size: 0.92rem;
+                font-size: 1rem;
                 font-weight: 500;
             }
             .price-card li::before {
@@ -711,7 +704,7 @@
                 border-radius: 14px;
                 padding: 15px 18px;
                 font-family: "Work Sans", sans-serif;
-                font-size: 0.95rem;
+                font-size: 1rem;
                 color: var(--ink);
                 width: 100%;
             }
@@ -765,7 +758,7 @@
                 flex-shrink: 0;
             }
             .info-row h4 {
-                font-size: 0.85rem;
+                font-size: 0.875rem;
                 text-transform: uppercase;
                 letter-spacing: 0.1em;
                 color: var(--deepteal);
@@ -773,14 +766,14 @@
                 margin-bottom: 0.3rem;
             }
             .info-row p {
-                font-size: 1.05rem;
+                font-size: 1rem;
                 color: var(--ink);
             }
 
             footer {
                 padding: 2.4rem 6vw;
                 text-align: center;
-                font-size: 0.85rem;
+                font-size: 0.875rem;
                 color: var(--ink);
             }
 
@@ -818,6 +811,9 @@
                     grid-column: 1;
                     grid-row: auto;
                     align-self: auto;
+                }
+                .contact-photo {
+                    justify-self: center;
                 }
                 .contact-details {
                     margin-top: 0.6rem;
@@ -858,14 +854,15 @@
                 <span class="eyebrow">Individuální koučink</span>
                 <h1>Prostor, kde se&nbsp;vaše myšlenky <em>urovnají</em>.</h1>
                 <p>
-                    Pomáhám lidem najít jasno v období změny — v práci, ve
-                    vztazích i v tom, co chtějí dál. Klidně, lidsky a bez frází.
+                    Pomáhám lidem najít jasno v období změny — v práci,
+                    ve&nbsp;vztazích i v&nbsp;tom, co chtějí dál. Klidně, lidsky
+                    a&nbsp;bez&nbsp;frází.
                 </p>
                 <div class="btn-row">
                     <a href="#kontakt" class="btn-primary"
                         >Domluvit konzultaci</a
                     >
-                    <a href="#o-mne" class="btn-ghost">Více o mně</a>
+                    <a href="#o-mne" class="btn-ghost">Více o&nbsp;mně</a>
                 </div>
             </div>
             <div class="hero-photo">
@@ -894,22 +891,22 @@
                 <span class="tag">Můj příběh</span>
                 <h2>Jsem Karin.</h2>
                 <p>
-                    Deset let jsem seděla na druhé straně stolu — v korporátu, v
-                    poradách, v rolích, kde jsem se ztrácela. Koučink mě naučil
-                    klást si jiné otázky. Dnes ho učím ostatní.
+                    Deset let jsem seděla na druhé straně stolu —
+                    v&nbsp;korporátu, v&nbsp;poradách, v&nbsp;rolích, kde jsem
+                    se ztrácela. Koučink mě naučil klást&nbsp;si jiné otázky.
+                    Dnes ho učím ostatní.
                 </p>
                 <p>
-                    Pracuji věcně a lidsky zároveň: žádná esoterika, žádné sliby
-                    zázraků. Jen upřímný rozhovor, který vám pomůže vidět
-                    vlastní situaci jasněji — a udělat další krok.
+                    Pracuji věcně a&nbsp;lidsky zároveň: žádná esoterika, žádné
+                    sliby zázraků. Jen upřímný rozhovor, který vám pomůže vidět
+                    vlastní situaci jasněji — a udělat další&nbsp;krok.
                 </p>
             </div>
             <div class="about-figure">
                 <blockquote>
-                    „Nechodím za klienty s odpověďmi. Chodím s otázkami, které
-                    jim pomůžou najít tu svoji.“
+                    Nechodím za&nbsp;klienty s&nbsp;odpověďmi. Chodím
+                    s&nbsp;otázkami, které jim pomůžou najít tu&nbsp;svoji.
                 </blockquote>
-                <cite>Karin Janiczková, koučka</cite>
             </div>
         </section>
 
@@ -919,7 +916,7 @@
                 <h2>Moje služby</h2>
                 <p>
                     Vyberte si formu, která vám teď dává smysl. Klidně to můžeme
-                    probrat i společně.
+                    probrat i&nbsp;společně.
                 </p>
             </div>
             <div class="cards">
@@ -936,8 +933,8 @@
                     <div class="icon"></div>
                     <h3>Workshop</h3>
                     <p>
-                        Půldenní nebo celodenní workshop pro menší skupiny na
-                        míru vašemu tématu.
+                        Půldenní nebo celodenní workshop pro menší skupiny
+                        na&nbsp;míru vašemu tématu.
                     </p>
                     <span class="card-link">Zjistit více →</span>
                 </a>
@@ -945,8 +942,8 @@
                     <div class="icon"></div>
                     <h3>Týmová dynamika</h3>
                     <p>
-                        Facilitace pro týmy, které potřebují lépe komunikovat a
-                        společně najít směr.
+                        Facilitace pro&nbsp;týmy, které potřebují lépe
+                        komunikovat a společně najít směr.
                     </p>
                     <span class="card-link">Zjistit více →</span>
                 </a>
@@ -964,7 +961,7 @@
                     <div class="price">1 500 Kč <span>/ 75 min</span></div>
                     <ul>
                         <li>Jedno konzultační setkání</li>
-                        <li>Online nebo osobně v Ostravě</li>
+                        <li>Online nebo osobně v&nbsp;Ostravě</li>
                     </ul>
                     <a
                         href="#kontakt"
@@ -981,9 +978,9 @@
                     <h3>Balíček 5 setkání</h3>
                     <div class="price">7 000 Kč <span>/ 5×</span></div>
                     <ul>
-                        <li>Pět setkání v průběhu 3 měsíců</li>
+                        <li>Pět setkání v&nbsp;průběhu tří&nbsp;měsíců</li>
                         <li>Průběžná textová podpora mezi setkáními</li>
-                        <li>Shrnutí a plán na závěr</li>
+                        <li>Shrnutí a plán na&nbsp;závěr</li>
                     </ul>
                     <a href="#kontakt" class="btn-primary">Vybrat balíček</a>
                 </div>
@@ -1005,8 +1002,8 @@
                         <div class="contact-intro">
                             <h2>Napište mi</h2>
                             <p class="lead">
-                                Ozvu se do dvou pracovních dnů a domluvíme si
-                                nezávazný úvodní hovor.
+                                Ozvu&nbsp;se do&nbsp;dvou pracovních dnů a
+                                domluvíme&nbsp;si nezávazný úvodní hovor.
                             </p>
                         </div>
                         <input id="name" type="text" placeholder="Jméno" />
