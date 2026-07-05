@@ -1,0 +1,32 @@
+[
+  {
+    "event_name": "hero_cta_clicked",
+    "event_description": "User clicked the primary hero CTA button to book a free 30-minute consultation.",
+    "file": "index.html"
+  },
+  {
+    "event_name": "hero_secondary_cta_clicked",
+    "event_description": "User clicked the secondary hero button 'Více o mně' to learn more about Karin.",
+    "file": "index.html"
+  },
+  {
+    "event_name": "nav_contact_clicked",
+    "event_description": "User clicked the 'Napiš mi' navigation CTA button in the sticky header.",
+    "file": "index.html"
+  },
+  {
+    "event_name": "pricing_cta_clicked",
+    "event_description": "User clicked the CTA button in the pricing section to reserve a free initial consultation.",
+    "file": "index.html"
+  },
+  {
+    "event_name": "contact_form_submitted",
+    "event_description": "User submitted the contact form requesting an initial coaching session.",
+    "file": "index.html"
+  },
+  {
+    "event_name": "contact_form_success_viewed",
+    "event_description": "User landed on the page with ?success=1, confirming their message was sent successfully.",
+    "file": "index.html"
+  }
+]
