@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Karin Janiczková - Koučink</title>
+        <title>Karin Janiczková - Koučování</title>
         <style>
             @font-face {
                 font-family: Literata;
@@ -60,6 +60,18 @@
                 font-family: "Work Sans", sans-serif;
                 font-weight: 400;
                 line-height: 1.65;
+            }
+            .lead-in {
+                font-family: "Literata", serif;
+                font-weight: 400;
+                letter-spacing: -0.01em;
+                font-size: clamp(2rem, 3.4vw, 2.7rem);
+                margin-top: 0.6rem;
+                color: var(--deepteal);
+                line-height: 1;
+            }
+            nav {
+                margin-top: 6px;
             }
             h1,
             h2,
@@ -119,7 +131,7 @@
                 color: var(--ink);
                 text-decoration: none;
                 font-size: 1rem;
-                margin-left: 2.2rem;
+                margin-left: 1.5rem;
             }
             nav a:hover {
                 color: var(--deepteal);
@@ -310,6 +322,10 @@
                 border-radius: 999px;
                 text-decoration: none;
                 font-size: 1rem;
+                transition: transform 0.2s ease;
+            }
+            .btn-ghost:hover {
+                transform: translateY(-2px);
             }
 
             .hero-photo {
@@ -343,7 +359,7 @@
                 display: grid;
                 grid-template-columns: 0.85fr 1.15fr;
                 gap: 5vw;
-                align-items: start;
+                align-items: center;
             }
             .tag {
                 font-size: 0.8125rem;
@@ -383,7 +399,8 @@
             }
 
             /* SLUZBY */
-            .services {
+            .services,
+            .how-it-works {
                 background: linear-gradient(
                     180deg,
                     var(--cream),
@@ -407,10 +424,25 @@
                 color: var(--ink);
                 margin-top: 1rem;
             }
-            .cards {
+
+            .how-it-works .cards {
                 display: grid;
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 900px;
                 gap: 1.8rem;
+                margin: 0 auto;
+            }
+
+            .card-list {
+                margin-left: 2rem;
+            }
+
+            .services .cards {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 900px;
+                gap: 1.8rem;
+                margin: 0 auto;
             }
             .card {
                 background: var(--cream);
@@ -423,18 +455,7 @@
                     box-shadow 0.25s ease,
                     background 0.25s ease;
                 display: block;
-                text-decoration: none;
                 color: inherit;
-                cursor: pointer;
-            }
-            .card:hover {
-                transform: translateY(-6px);
-                box-shadow: 0 18px 40px rgba(34, 50, 45, 0.14);
-                background: var(--cream-2);
-            }
-            .card:focus-visible {
-                outline: 2px solid var(--deepteal);
-                outline-offset: 3px;
             }
             .card .icon {
                 width: 44px;
@@ -452,10 +473,16 @@
                 margin-bottom: 0.8rem;
                 color: var(--deepteal);
             }
+            .card h3 em {
+                text-decoration: underline;
+                text-decoration-color: var(--gold);
+                text-decoration-thickness: 2px;
+                text-underline-offset: 3px;
+            }
             .card p {
                 font-size: 1rem;
                 color: var(--ink);
-                margin-bottom: 1.6rem;
+                margin-bottom: 0.8rem;
             }
             .card .card-link {
                 color: var(--deepteal);
@@ -468,6 +495,8 @@
             /* CENIK */
             .pricing {
                 background: var(--cream-2);
+                display: flex;
+                flex-direction: column;
             }
             .pricing-grid {
                 display: grid;
@@ -516,27 +545,29 @@
                 font-weight: 500;
             }
             .price-card ul {
-                list-style: none;
-                margin: 1.4rem 0 2rem;
+                margin: 1.4rem 0 2rem -0.4rem;
             }
             .price-card li {
-                padding: 0.4rem 0;
+                padding: 0.4rem 0 0 0.4rem;
                 font-size: 1rem;
                 font-weight: 500;
             }
-            .price-card li::before {
+            .price-card li::marker {
                 content: "· ";
                 color: var(--gold);
                 font-weight: 700;
             }
-            .price-card .btn-primary {
-                width: 100%;
-                text-align: center;
-                box-sizing: border-box;
-            }
-            .price-card.highlight .btn-primary {
+
+            .pricing .btn-primary {
                 background: var(--cream);
                 color: var(--deepteal);
+                text-align: center;
+                align-self: center;
+                box-sizing: border-box;
+                margin-top: 4rem;
+                padding-left: 4rem;
+                padding-right: 4rem;
+                border: 1.5px solid var(--deepteal);
             }
 
             /* KONTAKT */
@@ -792,7 +823,7 @@
                     grid-template-columns: 1fr;
                 }
                 .cards {
-                    grid-template-columns: 1fr;
+                    grid-template-columns: 1fr !important;
                 }
                 .pricing-grid {
                     grid-template-columns: 1fr;
@@ -842,9 +873,10 @@
             <div class="logo">Karin Janiczková</div>
             <nav>
                 <a href="#o-mne">O mně</a>
+                <a href="#jak-spolupracujeme">Jak probíhá spolupráce</a>
                 <a href="#sluzby">Služby</a>
                 <a href="#cenik">Ceník</a>
-                <a href="#kontakt" class="cta-small">Napište mi</a>
+                <a href="#kontakt" class="cta-small">Napiš mi</a>
             </nav>
         </header>
 
@@ -855,16 +887,21 @@
             </div>
             <div class="dot-accent" style="top: 8%; left: 4%"></div>
             <div class="hero-copy">
-                <span class="eyebrow">Individuální koučink</span>
-                <h1>Prostor, kde se&nbsp;vaše myšlenky <em>urovnají</em>.</h1>
+                <span class="eyebrow">Individuální koučování</span>
+                <h1>
+                    Svítím tam, kam&nbsp;mi ukážeš –
+                    <em>
+                        a&nbsp;zrcadlím&nbsp;ti zpátky vše, co&nbsp;vidím.
+                    </em>
+                </h1>
                 <p>
-                    Pomáhám lidem najít jasno v období změny — v práci,
-                    ve&nbsp;vztazích i v&nbsp;tom, co chtějí dál. Klidně, lidsky
-                    a&nbsp;bez&nbsp;frází.
+                    Koučování pro všechny, kteří chtějí najít svůj potenciál,
+                    mít jasno v&nbsp;období změn či posunout své&nbsp;vztahy.
+                    Klidně, lidsky a bez&nbsp;rad.
                 </p>
                 <div class="btn-row">
                     <a href="#kontakt" class="btn-primary"
-                        >Domluvit konzultaci</a
+                        >Zamluvit si 30minutovou schůzku zdarma</a
                     >
                     <a href="#o-mne" class="btn-ghost">Více o&nbsp;mně</a>
                 </div>
@@ -893,103 +930,142 @@
         <section class="about" id="o-mne">
             <div>
                 <span class="tag">Můj příběh</span>
-                <h2>Jsem Karin.</h2>
                 <p>
-                    Deset let jsem seděla na druhé straně stolu —
-                    v&nbsp;korporátu, v&nbsp;poradách, v&nbsp;rolích, kde jsem
-                    se ztrácela. Koučink mě naučil klást&nbsp;si jiné otázky.
-                    Dnes ho učím ostatní.
+                    <span class="lead-in"> Jsem Karin,</span>
+                    máma dvou úžasných dětí a profesionální koučka na cestě
+                    k&nbsp;PCC certifikaci u&nbsp;International Coaching
+                    Federation&nbsp;(ICF).
                 </p>
                 <p>
-                    Pracuji věcně a&nbsp;lidsky zároveň: žádná esoterika, žádné
-                    sliby zázraků. Jen upřímný rozhovor, který vám pomůže vidět
-                    vlastní situaci jasněji — a udělat další&nbsp;krok.
+                    Posledních deset let jsem hledala, co&nbsp;vlastně chci
+                    v&nbsp;životě dělat, kde je moje pravé místo. Pracovala jsem
+                    v&nbsp;účetní sféře, v&nbsp;administrativě, mám
+                    za&nbsp;sebou i rekvalifikační kurzy pro práci s&nbsp;dětmi
+                    ve&nbsp;škole nebo školce. Něco mi tam ale pokaždé chybělo.
+                    Vyšší smysl.
+                </p>
+                <p>
+                    Během mé druhé rodičovské přišel zlom. Už&nbsp;jsem nemohla
+                    dále zůstávat na&nbsp;stejném místě, ale k&nbsp;tomu, abych
+                    se mohla z&nbsp;toho místa pohnout, jsem potřebovala
+                    uzdravit své tělo i&nbsp;duši. Začala jsem se o&nbsp;sebe
+                    více starat, cvičit a znovu začala chodit na&nbsp;terapii.
+                </p>
+                <p>
+                    Fyzická proměna, pohyb i terapie dohromady spustily něco, co
+                    jsem předtím neviděla – a během toho jsem začala pracovat
+                    v&nbsp;koučovací škole. Díky tomu jsem si do seberozvoje
+                    přidala i koučovací IKIGAI sezení a akreditovaný výcvik – a
+                    poprvé po&nbsp;letech jsem měla jasno.
+                    <em>Tohle je ono.</em>
+                </p>
+                <p>
+                    Zažila jsem, jaké je tápání, kdy opravdu nevíš. Kdy nemáš
+                    odvahu na krok, po&nbsp;kterém ale bytostně toužíš. Proto
+                    vím, jak pomáhá mít vedle sebe někoho, kdo tě nehodnotí a
+                    nechce vědět všechno lépe než ty – jen ti dá bezpečný
+                    prostor projít&nbsp;si tím tápáním po&nbsp;svém.
                 </p>
             </div>
             <div class="about-figure">
                 <blockquote>
-                    Nechodím za&nbsp;klienty s&nbsp;odpověďmi. Chodím
-                    s&nbsp;otázkami, které jim pomůžou najít tu&nbsp;svoji.
+                    Ode mě odpověď nedostaneš, dávno už ji v&nbsp;sobě totiž
+                    máš.
                 </blockquote>
+                <blockquote>Jsi ready nahlédnout dovnitř?</blockquote>
+            </div>
+        </section>
+
+        <section class="how-it-works" id="jak-spolupracujeme">
+            <div class="section-head">
+                <!--<span class="tag">TODO tohle zrušit?</span>-->
+                <h2>Jak probíhá spolupráce</h2>
+                <!--<p>TODO nějaký text</p>-->
+            </div>
+            <div class="cards">
+                <div class="card">
+                    <div class="icon"></div>
+                    <h3><em>První krok:</em><br />30minutové úvodní setkání zdarma</h3>
+                    <p>
+                        Řekneme si:
+                        <ul class="card-list">
+                            <li>jaká máš očekávání,</li>
+                           <li>co reálně můžeš čekat ode&nbsp;mě,</li>
+                           <li>jak sezení probíhají</li>
+                           <li>a otestujeme naši „chemii.”</li>
+                        </ul>
+                    </p>
+                    <p>
+                    Bez správné chemie nemůže žádný vztah fungovat dobře – a
+                    to ani ten koučovací 😊 Je to tedy prostor, kde se
+                    můžeme především trochu poznat.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="icon"></div>
+                    <h3><em>Druhý krok:</em><br />Individuální koučování</h3>
+                    <p>
+                        Schůzka online nebo od&nbsp;1.&nbsp;8.&nbsp;2026 naživo
+                        v&nbsp;Ostravě v&nbsp;Impact Hubu ve&nbsp;4.&nbsp;patře. Celý
+                        průběh setkání trvá 75&nbsp;minut.
+                    </p>
+                    <p>Bezpečný prostor je pro mě na&nbsp;prvním místě, vždy budeš
+                    mít možnost z&nbsp;procesu vystoupit.</p>
+                </div>
             </div>
         </section>
 
         <section class="services" id="sluzby">
             <div class="section-head">
-                <span class="tag">Jak spolupracujeme</span>
+                <!--<span class="tag">TODO tohle zrušit?</span>-->
                 <h2>Moje služby</h2>
-                <p>
-                    Vyberte si formu, která vám teď dává smysl. Klidně to můžeme
-                    probrat i&nbsp;společně.
-                </p>
+                <!--<p>TODO nějaký text</p>-->
             </div>
             <div class="cards">
-                <a class="card" href="#kontakt">
+                <div class="card">
                     <div class="icon"></div>
-                    <h3>Individuální koučink</h3>
+                    <h3>1. Individuální koučování</h3>
                     <p>
-                        Pravidelná setkání zaměřená na vaše konkrétní téma —
-                        kariéra, rozhodování, změna směru.
+                        Jednorázový nebo pravidelný zaměřený na&nbsp;konkrétní téma –
+                        např. životní změny, vztahy, kariera, nový&nbsp;směr.
                     </p>
-                    <span class="card-link">Zjistit více →</span>
-                </a>
-                <a class="card" href="#kontakt">
+                </div>
+                <div class="card">
                     <div class="icon"></div>
-                    <h3>Workshop</h3>
+                    <h3>2. Firemní koučování</h3>
                     <p>
-                        Půldenní nebo celodenní workshop pro menší skupiny
-                        na&nbsp;míru vašemu tématu.
+                        Tuto sekci připravuji.
                     </p>
-                    <span class="card-link">Zjistit více →</span>
-                </a>
-                <a class="card" href="#kontakt">
-                    <div class="icon"></div>
-                    <h3>Týmová dynamika</h3>
-                    <p>
-                        Facilitace pro&nbsp;týmy, které potřebují lépe
-                        komunikovat a společně najít směr.
-                    </p>
-                    <span class="card-link">Zjistit více →</span>
-                </a>
+                </div>
             </div>
         </section>
 
         <section class="pricing" id="cenik">
             <div class="section-head">
-                <span class="tag">Ceník</span>
-                <h2>Vyberte si formát</h2>
+                <!--<span class="tag">TODO toto zrušit?</span>-->
+                <h2>Ceník</h2>
             </div>
             <div class="pricing-grid">
                 <div class="price-card">
-                    <h3>Jednotlivé setkání</h3>
+                    <h3>Jednotlivé sezení</h3>
                     <div class="price">1 500 Kč <span>/ 75 min</span></div>
                     <ul>
-                        <li>Jedno konzultační setkání</li>
-                        <li>Online nebo osobně v&nbsp;Ostravě</li>
+                        <li>Online nebo naživo v&nbsp;Ostravě</li>
                     </ul>
-                    <a
-                        href="#kontakt"
-                        class="btn-primary"
-                        style="
-                            background: transparent;
-                            border: 1.5px solid var(--deepteal);
-                            color: var(--deepteal);
-                        "
-                        >Rezervovat</a
-                    >
                 </div>
                 <div class="price-card highlight">
-                    <h3>Balíček 5 setkání</h3>
-                    <div class="price">7 000 Kč <span>/ 5×</span></div>
+                    <h3>Výhodnější balíček pěti setkání</h3>
+                    <div class="price">6 500 Kč <span>/ 5×</span></div>
                     <ul>
-                        <li>Pět setkání v&nbsp;průběhu tří&nbsp;měsíců</li>
-                        <li>Průběžná textová podpora mezi setkáními</li>
-                        <li>Shrnutí a plán na&nbsp;závěr</li>
+                        <li>Pět setkání kdykoliv během tří&nbsp;měsíců</li>
+                        <li>Ideální pro&nbsp;ty, kdo chtějí jít do&nbsp;hloubky
+                        a mají prostor věnovat se tomu&nbsp;naplno</li>
                     </ul>
-                    <a href="#kontakt" class="btn-primary">Vybrat balíček</a>
                 </div>
             </div>
+            <a href="#kontakt" class="btn-primary">Rezervuj&nbsp;si úvodní konzultaci zdarma</a>
         </section>
+
 
         <section class="contact" id="kontakt">
             <div class="mist-layer mist-contact">
@@ -1004,15 +1080,32 @@
                 <div class="contact-grid">
                     <div class="contact-form-fields">
                         <div class="contact-intro">
-                            <h2>Napište mi</h2>
+                            <h2>Napiš mi</h2>
                             <p class="lead">
                                 Ozvu&nbsp;se do&nbsp;dvou pracovních dnů a
                                 domluvíme&nbsp;si nezávazný úvodní hovor.
                             </p>
                         </div>
-                        <input id="name" name="name" type="text" placeholder="Jméno" required />
-                        <input id="email" name="email" type="email" placeholder="E-mail" required />
-                        <textarea id="message" name="message" placeholder="Zpráva" required></textarea>
+                        <input
+                            id="name"
+                            name="name"
+                            type="text"
+                            placeholder="Jméno"
+                            required
+                        />
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="E-mail"
+                            required
+                        />
+                        <textarea
+                            id="message"
+                            name="message"
+                            placeholder="Zpráva"
+                            required
+                        ></textarea>
                     </div>
                     <button
                         type="submit"
@@ -1046,7 +1139,7 @@
                         <div class="info-row">
                             <span class="dot"></span>
                             <div>
-                                <h4>Kde mě najdete</h4>
+                                <h4>Kde mě najdeš</h4>
                                 <p>
                                     Impact Hub
                                     <br />
@@ -1064,7 +1157,7 @@
             </form>
         </section>
 
-        <footer>© 2026 Karin Janiczková · Koučink</footer>
+        <footer>© 2026 Karin Janiczková</footer>
 
         <script>
             document.addEventListener("DOMContentLoaded", () => {
