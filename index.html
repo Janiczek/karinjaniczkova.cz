@@ -289,9 +289,9 @@
                 text-underline-offset: 6px;
             }
             .hero-copy p {
-                max-width: 38ch;
-                font-size: 1rem;
-                color: var(--ink);
+                margin-bottom: 1rem;
+            }
+            .hero-copy p:last-of-type {
                 margin-bottom: 2.2rem;
             }
             .btn-row {
@@ -809,10 +809,15 @@
             }
 
             footer {
+                width: fit-content;
+                margin: 0 auto;
                 padding: 2.4rem 6vw;
                 text-align: center;
                 font-size: 0.875rem;
                 color: var(--ink);
+                display: flex;
+                flex-direction: row;
+                gap: 2rem;
             }
 
             @media (max-width: 860px) {
@@ -855,6 +860,11 @@
                 }
                 .contact-details {
                     margin-top: 0.6rem;
+                }
+                footer {
+                    flex-direction: column;
+                    gap: 0.5rem;
+
                 }
             }
         </style>
@@ -924,6 +934,7 @@
                     (e.__SV = 1));
             })(document, window.posthog || []);
             posthog.init("phc_uFGSmmTU8aWcsevgb2RNyrugfovidbbzcnnuSKJwHxhZ", {
+                cookieless_mode: "always",
                 api_host: "https://eu.i.posthog.com",
                 defaults: "2026-05-30",
             });
@@ -968,9 +979,13 @@
                     </em>
                 </h1>
                 <p>
-                    Koučování pro všechny, kteří chtějí najít svůj potenciál,
-                    mít jasno v&nbsp;období změn či posunout své&nbsp;vztahy.
-                    Klidně, lidsky a bez&nbsp;rad.
+                    Koučování pro ženy, kterým se život mění pod rukama - ať jde
+                    o vztah k vlastnímu tělu, mateřství, partnerské vztahy nebo
+                    úplně novou kapitolu života.
+                </p>
+                <p>
+                    Ve světě plném rad, očekávání a „měla bys“ je někdy
+                    nejdůležitější znovu slyšet svůj vlastní hlas.
                 </p>
                 <div class="btn-row">
                     <a href="#kontakt" class="btn-primary"
@@ -1015,26 +1030,31 @@
                     v&nbsp;účetní sféře, v&nbsp;administrativě, mám
                     za&nbsp;sebou i rekvalifikační kurzy pro práci s&nbsp;dětmi
                     ve&nbsp;škole nebo školce. Něco mi tam ale pokaždé chybělo.
-                    Vyšší smysl.
+                    Vlastní hlas.
                 </p>
                 <p>
-                    Během mé druhé rodičovské přišel zlom. Už&nbsp;jsem nemohla
-                    dále zůstávat na&nbsp;stejném místě, ale k&nbsp;tomu, abych
-                    se mohla z&nbsp;toho místa pohnout, jsem potřebovala
-                    uzdravit své tělo i&nbsp;duši. Začala jsem se o&nbsp;sebe
-                    více starat, cvičit a znovu začala chodit na&nbsp;terapii.
+                    Během mé druhé rodičovské přišel zlom. Zjistila jsem, že už
+                    dlouho nežiju podle toho, co chci já, ale podle toho, co se
+                    čeká, co je správné a co už jednou fungovalo u někoho
+                    jiného. Abych se mohla pohnout dál, musela jsem se nejdřív
+                    ztišit a začít si naslouchat. Začala jsem se o sebe více
+                    starat, cvičit a znovu jsem začala chodit na terapii.
                 </p>
                 <p>
-                    Fyzická proměna, pohyb i terapie dohromady spustily něco, co
-                    jsem předtím neviděla – a během toho jsem začala pracovat
-                    v&nbsp;koučovací škole. Díky tomu jsem si do seberozvoje
-                    přidala i koučovací IKIGAI sezení a akreditovaný výcvik – a
-                    poprvé po&nbsp;letech jsem měla jasno.
-                    <em>Tohle je ono.</em>
+                    Fyzická proměna, pohyb a terapie dohromady mi pomohly
+                    objevit něco, co jsem do té doby neznala - zdravého
+                    dospělého.
                 </p>
                 <p>
-                    Zažila jsem, jaké je tápání, kdy opravdu nevíš. Kdy nemáš
-                    odvahu na krok, po&nbsp;kterém ale bytostně toužíš. Proto
+                    Během toho jsem začala pracovat v&nbsp;koučovací škole. Díky
+                    tomu jsem si do seberozvoje přidala i koučovací IKIGAI
+                    sezení a akreditovaný výcvik – a poprvé po&nbsp;letech jsem
+                    měla jasno. <em>Tohle je ono.</em>
+                </p>
+                <p>
+                    Zažila jsem, jaké je nevěřit vlastnímu úsudku, kdy nemáš
+                    odvahu na krok, po&nbsp;kterém ale bytostně toužíš, protože
+                    jsi zapomněla, jak zní tvůj hlas mezi všemi ostatními. Proto
                     vím, jak pomáhá mít vedle sebe někoho, kdo tě nehodnotí a
                     nechce vědět všechno lépe než ty – jen ti dá bezpečný
                     prostor projít&nbsp;si tím tápáním po&nbsp;svém.
@@ -1078,8 +1098,8 @@
                     <div class="icon"></div>
                     <h3><em>Druhý krok:</em><br />Individuální koučování</h3>
                     <p>
-                        Schůzka online nebo od&nbsp;1.&nbsp;8.&nbsp;2026 naživo
-                        v&nbsp;Ostravě v&nbsp;Impact Hubu ve&nbsp;4.&nbsp;patře. Celý
+                        Schůzka online nebo naživo v&nbsp;Ostravě v&nbsp;Impact
+                        Hubu ve&nbsp;4.&nbsp;patře. Celý
                         průběh setkání trvá 75&nbsp;minut.
                     </p>
                     <p>Bezpečný prostor je pro mě na&nbsp;prvním místě, vždy budeš
@@ -1098,16 +1118,26 @@
                 <div class="card">
                     <div class="icon"></div>
                     <h3>1. Individuální koučování</h3>
+                    <p>Bezpečný prostor najít zpátky svůj hlas - ať už procházíš čímkoliv.</p>
                     <p>
-                        Jednorázový nebo pravidelný zaměřený na&nbsp;konkrétní téma –
-                        např. životní změny, vztahy, kariera, nový&nbsp;směr.
+                        Jednorázové nebo pravidelné setkání zaměřené na&nbsp;konkrétní téma –
+                        např. životní změny, vztahy, kariéra, nový&nbsp;směr.
                     </p>
                 </div>
                 <div class="card">
                     <div class="icon"></div>
-                    <h3>2. Firemní koučování</h3>
+                    <h3>2. Pro bono program</h3>
                     <p>
-                        Tuto sekci připravuji.
+                        Při velkých životních změnách se můžeš dostat do
+                        situace, kdy nemáš prostředky na péči o sebe.
+                    </p>
+                    <p>
+                        Proto mám vždy vyhrazená dvě místa pro ženy, které by
+                        koučování teď potřebovaly, ale standardní cena je pro ně
+                        momentálně nedostupná.
+                    </p>
+                    <p>
+                        <a href="todo">TODO Google Formulář</a>
                     </p>
                 </div>
             </div>
@@ -1230,7 +1260,17 @@
             </form>
         </section>
 
-        <footer>© 2026 Karin Janiczková</footer>
+        <footer>
+            <span>
+                © 2026 Karin Janiczková
+            </span>
+            <span>
+                <a href="todo">TODO Obchodní podmínky</a>
+            </span>
+            <span>
+                <a href="todo">TODO GDPR</a>
+            </span>
+        </footer>
 
         <script>
             document.addEventListener("DOMContentLoaded", () => {
