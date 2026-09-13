@@ -356,6 +356,29 @@
                 pointer-events: none;
             }
 
+            .what {
+                display: grid;
+                grid-template-columns: 0.25fr 1fr 0.25fr;
+                gap: 5vw;
+                align-items: center;
+            }
+            .what h2 {
+                font-size: clamp(2rem, 3.4vw, 2.7rem);
+                margin-bottom: 1.6rem;
+                color: var(--deepteal);
+            }
+            .what p {
+                color: var(--ink);
+                margin-bottom: 1.2rem;
+                max-width: 56ch;
+            }
+            .what ul {
+                margin-left: 2rem;
+            }
+            .what>div {
+                grid-column: 2;
+            }
+
             /* ABOUT */
             .about {
                 display: grid;
@@ -826,6 +849,12 @@
                     min-height: auto;
                     padding-top: 12vw;
                 }
+                .what {
+                    grid-template-columns: 1fr;
+                }
+                .what>div {
+                    grid-column: 1;
+                }
                 .about,
                 .contact-grid {
                     grid-template-columns: 1fr;
@@ -1012,6 +1041,66 @@
                     <rect width="100%" height="100%" filter="url(#n2)" />
                 </svg>
                 <div class="frame-glow"></div>
+            </div>
+        </section>
+
+        <section class="what" id="what-you-get">
+            <div>
+                <span class="tag">Co ti spolupráce se mnou může přinést?</span>
+
+                <p>
+                    Když se ti svět otřásá v&nbsp;základech, je někdy těžké
+                    udržet&nbsp;si pevnou půdu pod&nbsp;nohama. Ať&nbsp;už
+                    si&nbsp;procházíš smutnými či radostnými událostmi, proměnou
+                    těla nebo tě čeká vstup do úplně nové životní kapitoly -
+                    koučování tu není proto, aby&nbsp;tě někdo “opravil”. Nejsi
+                    rozbitá. Vytvářím bezpečný prostor, ve&nbsp;kterém můžeš
+                    odložit všechny těžkosti a pro&nbsp;jednou nebýt jen
+                    ta&nbsp;silná. Nemusíš všechno zvládnout sama.
+                </p>
+
+                <p>
+                    Cesta i výsledek je plně ve&nbsp;tvých rukou, ale koučování
+                    ti dá nástroje k&nbsp;tomu, abys dosáhla:
+                </p>
+
+                <p>
+                    <ul>
+                        <li>
+                            <em>Úlevy od chaosu v hlavě:</em> Budeš mít možnost
+                            podívat&nbsp;se na&nbsp;situaci z&nbsp;jiných úhlů
+                            pohledu, získat odstup a větší nadhled
+                        </li>
+                        <li>
+                            <em>Návratu k vlastní identitě:</em> Dostaneš prostor k&nbsp;tomu
+                            objevovat, kým vlastně jsi bez&nbsp;nánosu rolí, které
+                            jsi v&nbsp;životě přijala. A&nbsp;taky k&nbsp;tomu,
+                            abys zjistila, co doopravdy chceš. </li>
+                        <li>
+                            <em>Pevnějších hranic:</em> Vlastním tempem můžeš rozvíjet
+                            schopnost postavit&nbsp;se sama za&nbsp;sebe a
+                            za&nbsp;své potřeby, pomalu&nbsp;se učit dávat sama
+                            sebe na&nbsp;první místo.
+                        </li>
+                        <li>
+                            <em>Důvěry k&nbsp;vlastním rozhodnutím:</em> Budeš moct
+                            posilovat svou vnitřní jistotu a postavit&nbsp;se
+                            ke&nbsp;změnám s&nbsp;větším klidem.
+                        </li>
+                        <li>
+                            <em>Konkrétních kroků, které budou fungovat
+                            pro&nbsp;tvůj život:</em> Příležitosti odejít
+                            ze&nbsp;sezení s&nbsp;jasným zaměřením a praktickými
+                            kroky, které sama budeš chtít zavést do&nbsp;praxe.
+                        </li>
+                    </ul>
+                </p>
+
+                <p>
+                    Získáš prostor, kde v&nbsp;tom nejsi sama. Místo, kde
+                    nemusíš být silná za&nbsp;každou cenu a kde můžeš jít svým
+                    vlastním tempem.
+                </p>
             </div>
         </section>
 
