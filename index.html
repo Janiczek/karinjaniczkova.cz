@@ -441,8 +441,8 @@
 
             .services .cards {
                 display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                max-width: 900px;
+                grid-template-columns: repeat(1, 1fr);
+                max-width: calc((900px - 1.8rem) / 1.5);
                 gap: 1.8rem;
                 margin: 0 auto;
             }
@@ -1117,27 +1117,11 @@
             <div class="cards">
                 <div class="card">
                     <div class="icon"></div>
-                    <h3>1. Individuální koučování</h3>
-                    <p>Bezpečný prostor najít zpátky svůj hlas - ať už procházíš čímkoliv.</p>
+                    <h3>Individuální koučování</h3>
+                    <p>Bezpečný prostor najít zpátky svůj hlas, ať už procházíš čímkoliv.</p>
                     <p>
                         Jednorázové nebo pravidelné setkání zaměřené na&nbsp;konkrétní téma –
                         např. životní změny, vztahy, kariéra, nový&nbsp;směr.
-                    </p>
-                </div>
-                <div class="card">
-                    <div class="icon"></div>
-                    <h3>2. Pro bono program</h3>
-                    <p>
-                        Při velkých životních změnách se můžeš dostat do
-                        situace, kdy nemáš prostředky na péči o sebe.
-                    </p>
-                    <p>
-                        Proto mám vždy vyhrazená dvě místa pro ženy, které by
-                        koučování teď potřebovaly, ale standardní cena je pro ně
-                        momentálně nedostupná.
-                    </p>
-                    <p>
-                        <a href="todo">TODO Google Formulář</a>
                     </p>
                 </div>
             </div>
@@ -1263,12 +1247,6 @@
         <footer>
             <span>
                 © 2026 Karin Janiczková
-            </span>
-            <span>
-                <a href="todo">TODO Obchodní podmínky</a>
-            </span>
-            <span>
-                <a href="todo">TODO GDPR</a>
             </span>
         </footer>
 
