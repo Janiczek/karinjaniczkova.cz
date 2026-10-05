@@ -549,14 +549,14 @@
             }
             .pricing-grid {
                 display: grid;
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(3, 1fr);
                 gap: 1.8rem;
-                max-width: 900px;
+                max-width: 1100px;
                 margin: 0 auto;
             }
             .price-card {
                 border-radius: 24px;
-                padding: 2.8rem;
+                padding: 2.4rem;
                 background: var(--cream);
                 border: 1.5px solid rgba(58, 44, 36, 0.16);
                 box-shadow: 0 10px 30px rgba(34, 50, 45, 0.08);
@@ -592,6 +592,16 @@
                 font-family: "Work Sans", sans-serif;
                 color: inherit;
                 font-weight: 500;
+            }
+            .price-card p {
+                font-size: 1rem;
+                font-weight: 500;
+            }
+            .price-card .price-note {
+                margin-top: 1rem;
+                font-size: 0.9rem;
+                font-weight: 400;
+                opacity: 0.75;
             }
             .price-card ul {
                 margin: 1.4rem 0 2rem -0.4rem;
@@ -864,6 +874,18 @@
                 display: flex;
                 flex-direction: row;
                 gap: 2rem;
+            }
+
+            @media (max-width: 1100px) {
+                .pricing-grid {
+                    gap: 1.2rem;
+                }
+                .price-card {
+                    padding: 1.8rem;
+                }
+                .price {
+                    font-size: 1.9rem;
+                }
             }
 
             @media (max-width: 860px) {
@@ -1262,20 +1284,24 @@
             </div>
             <div class="pricing-grid">
                 <div class="price-card">
-                    <h3>Jednotlivé sezení</h3>
-                    <div class="price">1 500 Kč <span>/ 75 min</span></div>
-                    <ul>
-                        <li>Online nebo naživo v&nbsp;Ostravě</li>
-                    </ul>
+                    <h3>Taky nevím, tak co teď?</h3>
+                    <div class="price">1&nbsp;500&nbsp;Kč</div>
+                    <p>Jednorázové sezení pro chvíle, kdy&nbsp;si potřebuješ
+                    posvítit na&nbsp;jednu konkrétní věc.</p>
                 </div>
                 <div class="price-card highlight">
-                    <h3>Výhodnější balíček pěti setkání</h3>
-                    <div class="price">6 500 Kč <span>/ 5×</span></div>
-                    <ul>
-                        <li>Pět setkání kdykoliv během tří&nbsp;měsíců</li>
-                        <li>Ideální pro&nbsp;ty, kdo chtějí jít do&nbsp;hloubky
-                        a mají prostor věnovat se tomu&nbsp;naplno</li>
-                    </ul>
+                    <h3>A kde jsem v&nbsp;tom já?</h3>
+                    <div class="price">3&nbsp;500&nbsp;Kč</div>
+                    <p>Tři sezení pro chvíle, kdy&nbsp;se sama v&nbsp;sobě
+                    trochu ztrácíš.</p>
+                    <p class="price-note">Platnost balíčku je 3&nbsp;měsíce.</p>
+                </div>
+                <div class="price-card">
+                    <h3>Tak jo. Po&nbsp;mém.</h3>
+                    <div class="price">6&nbsp;500&nbsp;Kč</div>
+                    <p>Pět sezení pro chvíle, kdy&nbsp;chceš zjistit, co je
+                    opravdu tvoje...a&nbsp;začít podle toho žít.</p>
+                    <p class="price-note">Platnost balíčku je 3&nbsp;měsíce.</p>
                 </div>
             </div>
             <a href="#kontakt" class="btn-primary">Rezervuj&nbsp;si úvodní konzultaci zdarma</a>
