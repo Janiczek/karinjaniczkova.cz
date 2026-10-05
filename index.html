@@ -863,6 +863,22 @@
                 font-size: 1rem;
                 color: var(--ink);
             }
+            .info-row a {
+                color: inherit;
+                text-decoration: underline;
+                text-decoration-color: var(--gold);
+                text-underline-offset: 3px;
+            }
+            .info-row a:hover {
+                color: var(--deepteal);
+            }
+            /* phone link only makes sense on touch devices; on desktop show plain text */
+            @media (hover: hover) and (pointer: fine) {
+                .info-row a.tel-link {
+                    pointer-events: none;
+                    text-decoration: none;
+                }
+            }
 
             footer {
                 width: fit-content;
@@ -1366,15 +1382,37 @@
                         <div class="info-row">
                             <span class="dot"></span>
                             <div>
+                                <h4>Instagram</h4>
+                                <p>
+                                    <a
+                                        href="https://instagram.com/karin_taky_nevi"
+                                        target="_blank"
+                                        rel="noopener"
+                                        >@karin_taky_nevi</a
+                                    >
+                                </p>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <span class="dot"></span>
+                            <div>
                                 <h4>Telefon</h4>
-                                <p>+420 734 143 500</p>
+                                <p>
+                                    <a class="tel-link" href="tel:+420734143500"
+                                        >+420&nbsp;734&nbsp;143&nbsp;500</a
+                                    >
+                                </p>
                             </div>
                         </div>
                         <div class="info-row">
                             <span class="dot"></span>
                             <div>
                                 <h4>E-mail</h4>
-                                <p>karin@janiczek.cz</p>
+                                <p>
+                                    <a href="mailto:karin@janiczek.cz"
+                                        >karin@janiczek.cz</a
+                                    >
+                                </p>
                             </div>
                         </div>
                         <div class="info-row">
