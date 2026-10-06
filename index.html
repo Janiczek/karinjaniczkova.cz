@@ -296,8 +296,9 @@
             }
             .btn-row {
                 display: flex;
-                gap: 1rem;
-                flex-wrap: wrap;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
             }
             .btn-primary {
                 font-family: "Work Sans", sans-serif;
@@ -317,17 +318,15 @@
             .btn-primary:hover {
                 transform: translateY(-2px);
             }
-            .btn-ghost {
-                border: 1.5px solid var(--deepteal);
-                color: var(--deepteal);
-                padding: 13.5px 28px;
-                border-radius: 999px;
-                text-decoration: none;
-                font-size: 1rem;
-                transition: transform 0.2s ease;
+            /* if the label wraps, keep it centered so the button has no lopsided empty space */
+            .btn-row .btn-primary {
+                text-align: center;
+                text-wrap: balance;
             }
-            .btn-ghost:hover {
-                transform: translateY(-2px);
+            .hero-copy p.btn-note {
+                margin: 0;
+                font-size: 0.9rem;
+                color: var(--olive);
             }
 
             .hero-photo {
@@ -356,6 +355,67 @@
                 pointer-events: none;
             }
 
+            /* POZNÁVÁŠ SE? */
+            .recognize {
+                background: linear-gradient(
+                    180deg,
+                    var(--cream),
+                    var(--cream-2)
+                );
+            }
+            .recognize .section-head {
+                max-width: 64ch;
+                margin-bottom: 3rem;
+            }
+            .section-head .recognize-sub {
+                font-family: "Literata", serif;
+                font-style: italic;
+                font-size: 1.3rem;
+                color: var(--deepteal);
+            }
+            .recognize-list {
+                list-style: none;
+                max-width: 900px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.2rem 1.8rem;
+            }
+            .recognize-list li {
+                background: var(--cream);
+                border-radius: 22px;
+                padding: 1.6rem 1.8rem 1.6rem 3.6rem;
+                position: relative;
+                color: var(--ink);
+                box-shadow: 0 10px 30px rgba(34, 50, 45, 0.06);
+            }
+            .recognize-list li::before {
+                content: "";
+                position: absolute;
+                left: 1.6rem;
+                top: 1.95rem;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: radial-gradient(
+                    circle at 35% 30%,
+                    var(--peach),
+                    var(--teal)
+                );
+            }
+            .recognize-outro {
+                max-width: 56ch;
+                margin: 3rem auto 0;
+                text-align: center;
+                font-size: 1.15rem;
+                color: var(--ink);
+            }
+            .recognize-outro em {
+                font-family: "Literata", serif;
+                font-style: italic;
+                color: var(--deepteal);
+            }
+
             .what {
                 display: grid;
                 grid-template-columns: 1.15fr 0.85fr;
@@ -372,8 +432,24 @@
                 margin-bottom: 1.2rem;
                 max-width: 56ch;
             }
-            .what ul {
-                margin-left: 2rem;
+            .what-items {
+                display: grid;
+                gap: 1.4rem;
+            }
+            .what-item {
+                padding-left: 1.2rem;
+                border-left: 2px solid var(--gold);
+            }
+            .what-item h3 {
+                font-family: "Literata", serif;
+                font-style: italic;
+                font-size: 1.2rem;
+                line-height: 1.35;
+                color: var(--deepteal);
+                margin-bottom: 0.4rem;
+            }
+            .what .what-item p {
+                margin-bottom: 0;
             }
             .what-photo {
                 position: relative;
@@ -403,11 +479,9 @@
             }
 
             /* ABOUT */
-            .about {
-                display: grid;
-                grid-template-columns: 0.85fr 1.15fr;
-                gap: 5vw;
-                align-items: center;
+            .about-text {
+                max-width: 44rem;
+                margin: 0 auto;
             }
             .tag {
                 font-size: 0.8125rem;
@@ -426,7 +500,6 @@
             .about p {
                 color: var(--ink);
                 margin-bottom: 1.2rem;
-                max-width: 56ch;
             }
             .about-figure {
                 background: linear-gradient(
@@ -437,6 +510,7 @@
                 border-radius: 24px;
                 padding: 2.6rem;
                 position: relative;
+                margin-top: 2rem;
             }
             .about-figure blockquote {
                 font-family: "Literata", serif;
@@ -446,8 +520,7 @@
                 color: var(--deepteal);
             }
 
-            /* SLUZBY */
-            .services,
+            .faq,
             .how-it-works {
                 background: linear-gradient(
                     180deg,
@@ -481,16 +554,73 @@
                 margin: 0 auto;
             }
 
-            .card-list {
-                margin-left: 2rem;
-            }
-
-            .services .cards {
-                display: grid;
-                grid-template-columns: repeat(1, 1fr);
-                max-width: calc((900px - 1.8rem) / 1.5);
-                gap: 1.8rem;
+            /* FAQ */
+            .faq-list {
+                max-width: 44rem;
                 margin: 0 auto;
+                display: grid;
+                gap: 1rem;
+            }
+            .faq-list details {
+                cursor: pointer;
+                background: var(--cream);
+                border-radius: 22px;
+                box-shadow: 0 10px 30px rgba(34, 50, 45, 0.06);
+                transition:
+                    transform 0.25s ease,
+                    box-shadow 0.25s ease;
+            }
+            /* hover only on real pointers, so taps on phones don't leave it stuck */
+            @media (hover: hover) {
+                .faq-list details:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 14px 34px rgba(34, 50, 45, 0.11);
+                }
+                .faq-list details:hover summary::after {
+                    color: var(--peach);
+                }
+            }
+            @media (prefers-reduced-motion: reduce) {
+                .faq-list details:hover {
+                    transform: none;
+                }
+            }
+            .faq-list summary {
+                list-style: none;
+                cursor: pointer;
+                padding: 1.4rem 3.6rem 1.4rem 1.8rem;
+                position: relative;
+                font-family: "Literata", serif;
+                font-size: 1.15rem;
+                color: var(--deepteal);
+            }
+            .faq-list summary::-webkit-details-marker {
+                display: none;
+            }
+            .faq-list summary::after {
+                content: "+";
+                position: absolute;
+                right: 1.6rem;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 1.5rem;
+                line-height: 1;
+                color: var(--gold);
+                transition:
+                    transform 0.2s ease,
+                    color 0.2s ease;
+            }
+            .faq-list details[open] summary::after {
+                transform: translateY(-50%) rotate(45deg);
+            }
+            .faq-list details p {
+                padding: 0 1.8rem;
+                margin-bottom: 0.8rem;
+                color: var(--ink);
+            }
+            .faq-list details p:last-child {
+                padding-bottom: 1.4rem;
+                margin-bottom: 0;
             }
             .card {
                 background: var(--cream);
@@ -910,10 +1040,16 @@
                     min-height: auto;
                     padding-top: 12vw;
                 }
-                .what {
+                .btn-row {
+                    align-items: stretch;
+                }
+                .hero-copy p.btn-note {
+                    text-align: center;
+                }
+                .what,
+                .recognize-list {
                     grid-template-columns: 1fr;
                 }
-                .about,
                 .contact-grid {
                     grid-template-columns: 1fr;
                 }
@@ -1044,8 +1180,8 @@
             <div class="logo">Karin Janiczková</div>
             <nav>
                 <a href="#o-mne">O mně</a>
-                <a href="#jak-spolupracujeme">Jak probíhá spolupráce</a>
-                <a href="#sluzby">Služby</a>
+                <a href="#jak-spolupracujeme">Jak to funguje</a>
+                <a href="#faq">FAQ</a>
                 <a href="#cenik">Ceník</a>
                 <a href="#kontakt" class="cta-small">Napiš mi</a>
             </nav>
@@ -1066,19 +1202,23 @@
                     </em>
                 </h1>
                 <p>
-                    Koučování pro ženy, kterým se život mění pod rukama - ať jde
-                    o vztah k vlastnímu tělu, mateřství, partnerské vztahy nebo
-                    úplně novou kapitolu života.
+                    Možná se toho kolem tebe změnilo hodně. Možná vlastně nic
+                    dramatického – jen už ti život, který doteď fungoval, nějak
+                    přestal sedět.
                 </p>
                 <p>
-                    Ve světě plném rad, očekávání a „měla bys“ je někdy
-                    nejdůležitější znovu slyšet svůj vlastní hlas.
+                    A mezi všemi rolemi, očekáváními a „měla bych“ se čím dál
+                    častěji ozývá jedna otázka:<br />
+                    <em>A kde jsem v tom já?</em>
                 </p>
                 <div class="btn-row">
                     <a href="#kontakt" class="btn-primary"
-                        >Zamluvit si 30minutovou schůzku zdarma</a
+                        >Pojďme zjistit, jestli si sedneme.</a
                     >
-                    <a href="#o-mne" class="btn-ghost">Více o&nbsp;mně</a>
+                    <p class="btn-note">
+                        30&nbsp;minut bez závazků a&nbsp;bez nutnosti mít
+                        připravený životní manifest
+                    </p>
                 </div>
             </div>
             <div class="hero-photo">
@@ -1102,6 +1242,49 @@
             </div>
         </section>
 
+        <section class="recognize" id="poznavas-se">
+            <div class="section-head">
+                <h2>
+                    Individuální koučování pro ženy, které nemusí mít jasno.
+                    Stačí, že chtějí zjistit, co dál.
+                </h2>
+                <p class="recognize-sub">
+                    Možná nemusíš mít krizi. Jen už ti něco v&nbsp;životě úplně
+                    nesedí.
+                </p>
+            </div>
+            <ul class="recognize-list">
+                <li>
+                    Všechno zvládáš. Ale místo života v&nbsp;přítomnosti jedeš
+                    na&nbsp;autopilota.
+                </li>
+                <li>
+                    Poznáš, co potřebují všichni kolem, ale u&nbsp;sebe jako
+                    kdyby někdo vypnul komunikační kanál.
+                </li>
+                <li>
+                    Změnila ses – po&nbsp;dětech, po&nbsp;zhubnutí, ve&nbsp;vztahu,
+                    v&nbsp;práci nebo prostě životem – a&nbsp;původní verze tebe
+                    už tě trochu tlačí.
+                </li>
+                <li>
+                    Máš několik možností, všechny sis rozebrala asi 150× a&nbsp;pořád
+                    nemáš tušení.
+                </li>
+                <li>
+                    Často ti lítají hlavou myšlenky „měla bych“, „už jsem měla být
+                    někde jinde“ nebo „normální člověk by přece…“
+                </li>
+                <li>
+                    Víš, že chceš něco jinak. Jen zatím neumíš úplně říct co.
+                </li>
+            </ul>
+            <p class="recognize-outro">
+                Nemusíš přijít s&nbsp;dokonale formulovaným tématem.
+                <em>„Nevím, jen vím, že takhle už nechci“</em> úplně stačí.
+            </p>
+        </section>
+
         <section class="what" id="what-you-get">
             <div class="what-photo">
                 <img src="images/koucovna.jpg" alt="Karin Janiczková" />
@@ -1123,173 +1306,201 @@
                 <div class="frame-glow"></div>
             </div>
             <div>
-                <span class="tag">Co ti spolupráce se mnou může přinést?</span>
+                <h2>
+                    A co se může stát, když na&nbsp;chvíli přestaneš poslouchat
+                    všechny ostatní?
+                </h2>
 
-                <p>
-                    Když se ti svět otřásá v&nbsp;základech, je někdy těžké
-                    udržet&nbsp;si pevnou půdu pod&nbsp;nohama. Ať&nbsp;už
-                    si&nbsp;procházíš smutnými či radostnými událostmi, proměnou
-                    těla nebo tě čeká vstup do úplně nové životní kapitoly -
-                    koučování tu není proto, aby&nbsp;tě někdo “opravil”. Nejsi
-                    rozbitá. Vytvářím bezpečný prostor, ve&nbsp;kterém můžeš
-                    odložit všechny těžkosti a pro&nbsp;jednou nebýt jen
-                    ta&nbsp;silná. Nemusíš všechno zvládnout sama.
-                </p>
-
-                <p>
-                    Cesta i výsledek je plně ve&nbsp;tvých rukou, ale koučování
-                    ti dá nástroje k&nbsp;tomu, abys dosáhla:
-                </p>
-
-                <p>
-                    <ul>
-                        <li>
-                            <em>Úlevy od chaosu v hlavě:</em> Budeš mít možnost
-                            podívat&nbsp;se na&nbsp;situaci z&nbsp;jiných úhlů
-                            pohledu, získat odstup a větší nadhled
-                        </li>
-                        <li>
-                            <em>Návratu k vlastní identitě:</em> Dostaneš prostor k&nbsp;tomu
-                            objevovat, kým vlastně jsi bez&nbsp;nánosu rolí, které
-                            jsi v&nbsp;životě přijala. A&nbsp;taky k&nbsp;tomu,
-                            abys zjistila, co doopravdy chceš. </li>
-                        <li>
-                            <em>Pevnějších hranic:</em> Vlastním tempem můžeš rozvíjet
-                            schopnost postavit&nbsp;se sama za&nbsp;sebe a
-                            za&nbsp;své potřeby, pomalu&nbsp;se učit dávat sama
-                            sebe na&nbsp;první místo.
-                        </li>
-                        <li>
-                            <em>Důvěry k&nbsp;vlastním rozhodnutím:</em> Budeš moct
-                            posilovat svou vnitřní jistotu a postavit&nbsp;se
-                            ke&nbsp;změnám s&nbsp;větším klidem.
-                        </li>
-                        <li>
-                            <em>Konkrétních kroků, které budou fungovat
-                            pro&nbsp;tvůj život:</em> Příležitosti odejít
-                            ze&nbsp;sezení s&nbsp;jasným zaměřením a praktickými
-                            kroky, které sama budeš chtít zavést do&nbsp;praxe.
-                        </li>
-                    </ul>
-                </p>
-
-                <p>
-                    Získáš prostor, kde v&nbsp;tom nejsi sama. Místo, kde
-                    nemusíš být silná za&nbsp;každou cenu a kde můžeš jít svým
-                    vlastním tempem.
-                </p>
+                <div class="what-items">
+                    <div class="what-item">
+                        <h3>Méně „měla bych“. Víc „já chci“.</h3>
+                        <p>
+                            Začneš líp rozlišovat, co skutečně chceš ty a&nbsp;co
+                            sis jen cestou posbírala od&nbsp;okolí.
+                        </p>
+                    </div>
+                    <div class="what-item">
+                        <h3>
+                            Místo nočního přemýšlecího maratonu do&nbsp;5&nbsp;ráno
+                            více klidu a&nbsp;pokoje.
+                        </h3>
+                        <p>
+                            Podíváš se na&nbsp;to, co řešíš, z&nbsp;jiného úhlu
+                            a&nbsp;uděláš si v&nbsp;tom trochu víc pořádek.
+                        </p>
+                    </div>
+                    <div class="what-item">
+                        <h3>Víc důvěry v&nbsp;sebe.</h3>
+                        <p>
+                            Ne proto, že ti někdo řekne správnou odpověď. Ale
+                            protože se naučíš víc věřit té svojí.
+                        </p>
+                    </div>
+                    <div class="what-item">
+                        <h3>Hranice bez eseje na&nbsp;tři A4.</h3>
+                        <p>
+                            Můžeš zkoumat, co potřebuješ, jak si chránit svůj čas,
+                            a&nbsp;začít říkat ano jen tam, kde opravdu cítíš, že je
+                            to tvoje.
+                        </p>
+                    </div>
+                    <div class="what-item">
+                        <h3>A&nbsp;nakonec něco udělat.</h3>
+                        <p>
+                            Ne protože „už to mělo dávno být“. Ale protože sis sama
+                            vybrala, že právě tohle teď dává smysl tobě.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section class="about" id="o-mne">
-            <div>
-                <span class="tag">Můj příběh</span>
+            <div class="about-text">
+                <h2>Jo, taky jsem se sama sobě někde cestou ztratila.</h2>
                 <p>
-                    <span class="lead-in"> Jsem Karin,</span>
-                    máma dvou úžasných dětí a profesionální koučka na cestě
-                    k&nbsp;PCC certifikaci u&nbsp;International Coaching
-                    Federation&nbsp;(ICF).
+                    Dlouho jsem se schovávala za&nbsp;role, co byly zrovna
+                    potřeba.
                 </p>
                 <p>
-                    Posledních deset let jsem hledala, co&nbsp;vlastně chci
-                    v&nbsp;životě dělat, kde je moje pravé místo. Pracovala jsem
-                    v&nbsp;účetní sféře, v&nbsp;administrativě, mám
-                    za&nbsp;sebou i rekvalifikační kurzy pro práci s&nbsp;dětmi
-                    ve&nbsp;škole nebo školce. Něco mi tam ale pokaždé chybělo.
-                    Vlastní hlas.
+                    Máma. Partnerka. Ta zodpovědná. Ta, co všechno zařídí. Ta, co
+                    přece všechno zvládne a&nbsp;nikdy nezklame.
                 </p>
                 <p>
-                    Během mé druhé rodičovské přišel zlom. Zjistila jsem, že už
-                    dlouho nežiju podle toho, co chci já, ale podle toho, co se
-                    čeká, co je správné a co už jednou fungovalo u někoho
-                    jiného. Abych se mohla pohnout dál, musela jsem se nejdřív
-                    ztišit a začít si naslouchat. Začala jsem se o sebe více
-                    starat, cvičit a znovu jsem začala chodit na terapii.
+                    Jenže někde mezi tím vším jsem začala zjišťovat, že v&nbsp;tom
+                    sice umím docela dobře fungovat… ale vlastně vůbec nevím, co
+                    vlastně chci já. Doopravdy.
                 </p>
                 <p>
-                    Fyzická proměna, pohyb a terapie dohromady mi pomohly
-                    objevit něco, co jsem do té doby neznala - zdravého
-                    dospělého.
+                    Do toho se mi konečně podařilo zhubnout desítky kil (což byl
+                    šok), hledala jsem svoje místo profesně a&nbsp;obecně jsem
+                    přemýšlela, co mě vlastně naplňuje v&nbsp;životě.
                 </p>
                 <p>
-                    Během toho jsem začala pracovat v&nbsp;koučovací škole. Díky
-                    tomu jsem si do seberozvoje přidala i koučovací IKIGAI
-                    sezení a akreditovaný výcvik – a poprvé po&nbsp;letech jsem
-                    měla jasno. <em>Tohle je ono.</em>
+                    Hlavou mi jela otázka: <em>Kdo sakra vlastně jsem?</em><br />
+                    A&nbsp;taky: <em>Neměla bych tohle už dávno vědět?</em>
+                </p>
+                <p>Spoiler: neměla.</p>
+                <p>
+                    Žádné velké osvícení se nekonalo. Spíš jsem postupně začala
+                    chytat svoje vlastní „musím“, „tohle se ode mě čeká“
+                    a&nbsp;„správně by bylo…“ přímo při činu.
+                </p>
+                <p>A&nbsp;dělám to doteď.</p>
+                <p>
+                    Pořád někdy pochybuju. Pořád mám tendenci všechno analyzovat.
+                    Pořád se učím nastavovat hranice, nebýt na&nbsp;sebe zlá
+                    a&nbsp;nebrat každý cizí názor jako další zaručený návod
+                    k&nbsp;životu.
+                </p>
+                <p>Takže ne — nemám život vyřešený.</p>
+                <p>
+                    Vím ale, jaké je ztratit vlastní hlas mezi všemi ostatními.
+                    A&nbsp;taky vím, jak moc může změnit chvíle, kdy na&nbsp;tebe
+                    nikdo netlačí, nikdo ti neříká, co máš dělat, a&nbsp;ty máš
+                    konečně prostor se zaposlouchat do&nbsp;sebe.
+                </p>
+                <p>A&nbsp;přesně tak vnímám koučování.</p>
+                <p>
+                    Ne jako další hotový návod.<br />
+                    Ne jako „tady máš pět kroků k&nbsp;lepšímu životu“.<br />
+                    A&nbsp;už vůbec ne jako prostor, kde ti budu vysvětlovat, co
+                    je pro tebe správně.
                 </p>
                 <p>
-                    Zažila jsem, jaké je nevěřit vlastnímu úsudku, kdy nemáš
-                    odvahu na krok, po&nbsp;kterém ale bytostně toužíš, protože
-                    jsi zapomněla, jak zní tvůj hlas mezi všemi ostatními. Proto
-                    vím, jak pomáhá mít vedle sebe někoho, kdo tě nehodnotí a
-                    nechce vědět všechno lépe než ty – jen ti dá bezpečný
-                    prostor projít&nbsp;si tím tápáním po&nbsp;svém.
+                    Spíš jako místo, kde můžeš na&nbsp;chvíli odložit všechna
+                    „měla bych“, podívat se na&nbsp;to, co řešíš, z&nbsp;jiného
+                    úhlu a&nbsp;zjistit, co z&nbsp;toho všeho je vlastně opravdu
+                    tvoje.
                 </p>
-            </div>
-            <div class="about-figure">
-                <blockquote>
-                    Ode mě odpověď nedostaneš, dávno už ji v&nbsp;sobě totiž
-                    máš.
-                </blockquote>
-                <blockquote>Jsi ready nahlédnout dovnitř?</blockquote>
+                <p>
+                    Protože možná nepotřebuješ další odpověď zvenku.
+                </p>
+                <p>Možná potřebuješ konečně slyšet tu svoji.</p>
+                <div class="about-figure">
+                    <blockquote>
+                        Ode mě odpověď nedostaneš, dávno už ji v&nbsp;sobě totiž
+                        máš.
+                    </blockquote>
+                    <blockquote>Jsi ready nahlédnout dovnitř?</blockquote>
+                </div>
             </div>
         </section>
 
         <section class="how-it-works" id="jak-spolupracujeme">
             <div class="section-head">
-                <!--<span class="tag">TODO tohle zrušit?</span>-->
-                <h2>Jak probíhá spolupráce</h2>
-                <!--<p>TODO nějaký text</p>-->
+                <h2>Jak to celé funguje?</h2>
             </div>
             <div class="cards">
                 <div class="card">
                     <div class="icon"></div>
-                    <h3><em>První krok:</em><br />30minutové úvodní setkání zdarma</h3>
+                    <h3>
+                        <em>První krok:</em><br />Nejdřív zjistíme, jestli si
+                        sedneme
+                    </h3>
                     <p>
-                        Řekneme si:
-                        <ul class="card-list">
-                            <li>jaká máš očekávání,</li>
-                           <li>co reálně můžeš čekat ode&nbsp;mě,</li>
-                           <li>jak sezení probíhají</li>
-                           <li>a otestujeme naši „chemii.”</li>
-                        </ul>
-                    </p>
-                    <p>
-                    Bez správné chemie nemůže žádný vztah fungovat dobře – a
-                    to ani ten koučovací 😊 Je to tedy prostor, kde se
-                    můžeme především trochu poznat.
+                        30&nbsp;minut zdarma. Řekneš mi, co tě sem přivádí –
+                        a&nbsp;je úplně v&nbsp;pohodě, pokud to nebudeš hned umět
+                        pojmenovat :)
                     </p>
                 </div>
                 <div class="card">
                     <div class="icon"></div>
-                    <h3><em>Druhý krok:</em><br />Individuální koučování</h3>
+                    <h3>
+                        <em>Druhý krok:</em><br />Pak si posvítíme na&nbsp;to,
+                        co potřebuješ.
+                    </h3>
                     <p>
-                        Schůzka online nebo naživo v&nbsp;Ostravě v&nbsp;Impact
-                        Hubu ve&nbsp;4.&nbsp;patře. Celý
-                        průběh setkání trvá 75&nbsp;minut.
+                        75&nbsp;minut. A&nbsp;je jen na&nbsp;tobě, co si z&nbsp;nich
+                        odneseš. Rozhodnutí, plán, další podněty
+                        k&nbsp;přemýšlení? :)
                     </p>
-                    <p>Bezpečný prostor je pro mě na&nbsp;prvním místě, vždy budeš
-                    mít možnost z&nbsp;procesu vystoupit.</p>
                 </div>
             </div>
         </section>
 
-        <section class="services" id="sluzby">
+        <section class="faq" id="faq">
             <div class="section-head">
-                <!--<span class="tag">TODO tohle zrušit?</span>-->
-                <h2>Moje služby</h2>
-                <!--<p>TODO nějaký text</p>-->
+                <h2>FAQ</h2>
             </div>
-            <div class="cards">
-                <div class="card">
-                    <div class="icon"></div>
-                    <h3>Individuální koučování</h3>
-                    <p>Bezpečný prostor najít zpátky svůj hlas, ať už procházíš čímkoliv.</p>
+            <div class="faq-list">
+                <details>
+                    <summary>Co když nevím, kde začít?</summary>
+                    <p>Nevadí, od toho tady ten prostor je :)</p>
+                </details>
+                <details>
+                    <summary>Je koučování terapie?</summary>
+                    <p>Ne. A&nbsp;ani si na&nbsp;ni nehraje. :)</p>
                     <p>
-                        Jednorázové nebo pravidelné setkání zaměřené na&nbsp;konkrétní téma –
-                        např. životní změny, vztahy, kariéra, nový&nbsp;směr.
+                        Terapie řeší, proč se něco děje a&nbsp;co si neseš
+                        z&nbsp;minulosti. Koučování se víc dívá na&nbsp;to, kde jsi
+                        teď, co chceš a&nbsp;co s&nbsp;tím můžeš udělat dál.
                     </p>
-                </div>
+                    <p>A&nbsp;někdy dává perfektní smysl mít obojí.</p>
+                </details>
+                <details>
+                    <summary>Poradíš mi, co mám dělat?</summary>
+                    <p>
+                        Ne. Ode mě radu nedostaneš, dávno už ji v&nbsp;sobě totiž
+                        máš.
+                    </p>
+                </details>
+                <details>
+                    <summary>Musím se zavázat k&nbsp;několika sezením?</summary>
+                    <p>
+                        Určitě ne. Možností spolupráce je vícero, vyber si tu,
+                        na&nbsp;kterou se cítíš.
+                    </p>
+                </details>
+                <details>
+                    <summary>
+                        Co když mi tahle forma seberozvoje nebude sedět?
+                    </summary>
+                    <p>
+                        Tak je to naprosto v&nbsp;pořádku. Spolupráci můžeš
+                        kdykoliv ukončit.
+                    </p>
+                </details>
             </div>
         </section>
 
@@ -1320,7 +1531,7 @@
                     <p class="price-note">Platnost balíčku je 3&nbsp;měsíce.</p>
                 </div>
             </div>
-            <a href="#kontakt" class="btn-primary">Rezervuj&nbsp;si úvodní konzultaci zdarma</a>
+            <a href="#kontakt" class="btn-primary">Chci úvodní setkání</a>
         </section>
 
 
@@ -1471,15 +1682,6 @@
                     });
                 }
 
-                const heroSecondary = document.querySelector(
-                    ".hero .btn-ghost",
-                );
-                if (heroSecondary) {
-                    heroSecondary.addEventListener("click", () => {
-                        posthog.capture("hero_secondary_cta_clicked");
-                    });
-                }
-
                 const navContact = document.querySelector("nav .cta-small");
                 if (navContact) {
                     navContact.addEventListener("click", () => {
@@ -1495,6 +1697,15 @@
                         posthog.capture("pricing_cta_clicked");
                     });
                 }
+
+                // clicking the open answer (not just the summary) closes the card
+                document.querySelectorAll(".faq-list details").forEach((d) => {
+                    d.addEventListener("click", (e) => {
+                        if (e.target.closest("summary")) return;
+                        if (window.getSelection().toString()) return;
+                        d.open = false;
+                    });
+                });
 
                 const contactForm = document.querySelector("form");
                 if (contactForm) {
