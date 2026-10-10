@@ -459,6 +459,84 @@
                 color: var(--deepteal);
             }
 
+            /* CO ODE MĚ MŮŽEŠ ČEKAT */
+            .expect {
+                background: linear-gradient(
+                    180deg,
+                    var(--cream),
+                    var(--cream-2)
+                );
+            }
+            .expect-list {
+                max-width: 900px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.2rem 1.8rem;
+            }
+            .expect-card {
+                background: var(--cream);
+                border-radius: 22px;
+                padding: 2rem 2rem 1.8rem;
+                color: var(--ink);
+                box-shadow: 0 10px 30px rgba(34, 50, 45, 0.06);
+                transition:
+                    transform 0.25s ease,
+                    box-shadow 0.25s ease;
+            }
+            @media (hover: hover) {
+                .expect-card:hover {
+                    transform: translateY(-1px);
+                    box-shadow: 0 12px 32px rgba(34, 50, 45, 0.085);
+                }
+            }
+            .expect-card h3 {
+                font-size: 1.35rem;
+                line-height: 1.3;
+                margin-bottom: 0.9rem;
+                color: var(--deepteal);
+                padding-left: 1rem;
+                border-left: 2px solid var(--gold);
+            }
+            .expect-card p {
+                margin-bottom: 0.8rem;
+            }
+            .expect-card p:last-child {
+                margin-bottom: 0;
+            }
+
+            /* O MNĚ (krátká verze) */
+            .bio-text {
+                max-width: 44rem;
+                margin: 0 auto;
+            }
+            .bio h2 {
+                font-size: clamp(2rem, 3.4vw, 2.7rem);
+                margin-bottom: 1.6rem;
+                color: var(--deepteal);
+            }
+            .bio p {
+                color: var(--ink);
+                margin-bottom: 1.2rem;
+            }
+            .bio p em {
+                font-family: "Literata", serif;
+                color: var(--deepteal);
+            }
+            .bio .btn-primary {
+                margin: 0.8rem 0 1.4rem;
+            }
+            .bio p.bio-ig {
+                font-size: 0.95rem;
+                margin-bottom: 0;
+            }
+            .bio-ig a {
+                color: inherit;
+                text-decoration: underline;
+                text-decoration-color: var(--gold);
+                text-underline-offset: 3px;
+            }
+
             .what {
                 display: grid;
                 grid-template-columns: 1.15fr 0.85fr;
@@ -619,8 +697,8 @@
 
             .how-it-works .cards {
                 display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                max-width: 900px;
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 1100px;
                 gap: 1.8rem;
                 margin: 0 auto;
             }
@@ -848,6 +926,16 @@
                 border-radius: 50%;
                 filter: blur(48px);
                 mix-blend-mode: multiply;
+            }
+            /* fade the mist out at the top so the blobs aren't sliced off in a
+               hard line where this section meets the pricing section */
+            .mist-contact {
+                -webkit-mask-image: linear-gradient(
+                    to bottom,
+                    transparent 0,
+                    black 22%
+                );
+                mask-image: linear-gradient(to bottom, transparent 0, black 22%);
             }
             .mist-contact .c1 {
                 width: 44vw;
@@ -1081,16 +1169,22 @@
                 }
             }
 
+            /* lives inside .contact so the mist blobs show faintly through it */
             footer {
-                width: fit-content;
-                margin: 0 auto;
+                position: relative;
+                z-index: 1;
+                margin: 4rem -6vw -9vw;
                 padding: 2.4rem 6vw;
                 text-align: center;
                 font-size: 0.875rem;
                 color: var(--ink);
                 display: flex;
                 flex-direction: row;
+                justify-content: center;
                 gap: 2rem;
+                background: color-mix(in srgb, var(--cream) 62%, transparent);
+                backdrop-filter: blur(14px);
+                -webkit-backdrop-filter: blur(14px);
             }
 
             @media (max-width: 1100px) {
@@ -1125,6 +1219,7 @@
                 }
                 .what,
                 .about,
+                .expect-list,
                 .recognize-list {
                     grid-template-columns: 1fr;
                 }
@@ -1382,8 +1477,8 @@
                     ...víš přesně, co potřebují všichni kolem, ale u&nbsp;sebe už tolik ne.
                 </li>
                 <li>
-                    ...ses změnila – po&nbsp;dětech, po&nbsp;zhubnutí, ve&nbsp;vztahu,
-                    v&nbsp;práci nebo prostě životem – a&nbsp;původní verze tebe
+                    ...ses změnila - po&nbsp;dětech, po&nbsp;zhubnutí, ve&nbsp;vztahu,
+                    v&nbsp;práci nebo prostě životem - a&nbsp;původní verze tebe
                     už tě trochu tlačí.
                 </li>
                 <li>
@@ -1542,6 +1637,104 @@
             </div>
         </section>
 
+        <section class="expect" id="co-cekat">
+            <div class="section-head">
+                <h2>Co ode mě můžeš čekat</h2>
+            </div>
+            <div class="expect-list">
+                <div class="expect-card">
+                    <h3>Hodně otázek</h3>
+                    <p>
+                        Občas se budu ptát příjemně.<br />
+                        Občas trochu otravně.<br />
+                        Občas se možná zastavíš a&nbsp;řekneš si „ty jo“.<br />
+                        A&nbsp;někdy budeš chtít moji otázku (nebo mě) hodit
+                        z&nbsp;okna.<br />
+                    </p>
+                </div>
+                <div class="expect-card">
+                    <h3>Ticho místo instantních odpovědí</h3>
+                    <p>
+                        I&nbsp;když by někdy byly pocitově výrazně
+                        rychlejší.<br /><br/>
+                        Jenže ty nepotřebuješ žít podle mých odpovědí.
+                        A ticho je skvělý nástroj, jak ty své začít vnímat.
+                    </p>
+                </div>
+                <div class="expect-card">
+                    <h3>Prostor, kde odložit těžkosti</h3>
+                    <p>Některé věci jsou prostě těžké nebo nás štvou.</p>
+                    <p>
+                        Nebudu tě za každou cenu nutit být sluníčková, ale
+                        můžeme se podívat na věci z&nbsp;jiného úhlu pohledu.
+                    </p>
+                </div>
+                <div class="expect-card">
+                    <h3>Bezpečí</h3>
+                    <p>
+                        Nemusíš nic obhajovat, nebudu tě soudit.<br />
+                        Nemusíš mít ani hezky srovnané myšlenky.<br />
+                        Nemusíš být „dobrá klientka“.<br />
+                        Stačí přijít jako ty.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bio" id="o-karin">
+            <div class="bio-text">
+                <h2>Ahoj, já jsem Karin.</h2>
+                <p>
+                    Dlouho jsem fungovala jen pod nánosem rolí.
+                    Máma, manželka, dcera. Ta zodpovědná. Ta, co všechno
+                    zvládne. Ta, co nezklame. Patologický people pleaser.
+                </p>
+                <p>
+                    Vůbec jsem neměla tušení, kdo jsem.
+                    Pak navíc přišly změny.
+                    PMOS. Mateřství po sekundární neplodnosti.
+                    Návrat do práce.
+                    Přes 50 kilo dole a&nbsp;tělo, které najednou vypadalo jinak.
+                    K&nbsp;tomu hlava, která se měnila výrazně pomaleji.
+                </p>
+                <p>
+                    Vyvíjela jsem na sebe obrovský tlak a&nbsp;ptala jsem se:
+                    Kdo sakra vlastně jsem?
+                    A&nbsp;hned za tím samozřejmě:
+                    Neměla bych tohle už dávno vědět?
+                </p>
+                <p>
+                    Strašně jsem si přála dostat návod, jak se okamžitě stát
+                    vylepšenou „Karin 2.0“. Díky terapii a koučování jsem ale
+                    pochopila, že tudy cesta nevede. Došlo mi, že spíš potřebuji
+                    přijímat sebe samou přesně tak, jak jsem.
+                </p>
+                <p>
+                    Koučování mi dalo prostor konečně slyšet sama sebe i&nbsp;ve
+                    chvíli, kdy kolem bylo docela hlučno, a&nbsp;přesně takový
+                    prostor teď nabízím dál.
+                </p>
+                <p>
+                    Ve své práci vycházím z&nbsp;principů profesionálního
+                    koučování a&nbsp;řídím se <a
+                        href="https://www.coachfederation.cz/en/eticky-kodex-icf"
+                        target="_blank"
+                        rel="noopener"
+                    >etickým kodexem ICF.</a>
+                </p>
+                <p class="bio-ig">
+                    Jo a&nbsp;najdeš mě na&nbsp;Instagramu jako
+                    <a
+                        href="https://instagram.com/karin_taky_nevi"
+                        target="_blank"
+                        rel="noopener"
+                        >@karin_taky_nevi</a
+                    >.
+                </p>
+                <a href="#kontakt" class="btn-primary">Pojďme si zavolat</a>
+            </div>
+        </section>
+
         <section class="how-it-works" id="jak-spolupracujeme">
             <div class="section-head">
                 <h2>Jak to celé funguje?</h2>
@@ -1550,25 +1743,47 @@
                 <div class="card">
                     <div class="icon"></div>
                     <h3>
-                        <em>První krok:</em><br />Nejdřív zjistíme, jestli si
-                        sedneme
+                        <em>První krok:</em><br />Ozvi se mi (jakkoliv)
                     </h3>
                     <p>
-                        30&nbsp;minut zdarma. Řekneš mi, co tě sem přivádí –
-                        a&nbsp;je úplně v&nbsp;pohodě, pokud to nebudeš hned umět
-                        pojmenovat :)
+                        Napiš mi přes kontaktní formulář níže, Instagram, email,
+                        SMS nebo mi zavolej.
+                    </p>
+                    <p>
+                        Domluvíme si termín nezávazné konzultace.
+                    </p>
+                    <p>
+                        Speaking of...
                     </p>
                 </div>
                 <div class="card">
                     <div class="icon"></div>
                     <h3>
-                        <em>Druhý krok:</em><br />Pak si posvítíme na&nbsp;to,
-                        co potřebuješ.
+                        <em>Druhý krok:</em><br />Na konzultaci zjistíme, jestli si sedneme
                     </h3>
                     <p>
-                        75&nbsp;minut. A&nbsp;je jen na&nbsp;tobě, co si z&nbsp;nich
+                        30&nbsp;minut zdarma, naživo v Ostravě nebo přes Google Meet.
+                    </p>
+                    <p>
+                        Řekneš mi, co tě sem přivádí, a co od koučování čekáš - a&nbsp;je úplně
+                        v&nbsp;pohodě, pokud to nebudeš hned umět pojmenovat :)
+                    </p>
+                    <p>
+                        A pokud nám to bude oběma dávat smysl...
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="icon"></div>
+                    <h3>
+                    <em>Třetí krok:</em><br />Jdeme na to: sezení
+                    </h3>
+                    <p>
+                        75&nbsp;minut, naživo nebo online.
+                    </p>
+                    <p>
+                        A&nbsp;už je jen na&nbsp;tobě, co si z&nbsp;nich
                         odneseš. Rozhodnutí, plán, další podněty
-                        k&nbsp;přemýšlení? :)
+                        k&nbsp;přemýšlení, nebo prostě jen ztišení? :)
                     </p>
                 </div>
             </div>
@@ -1760,13 +1975,13 @@
                     </div>
                 </div>
             </form>
+            <footer>
+                <span>
+                    © 2026 Karin Janiczková | IČO: 24584835 | Sídlo: Karvinská 1196/205, 716 00 Ostrava-Radvanice | <a href="/documents/2026-09-13 - Všeobecné obchodní podmínky - Karin Janiczková.pdf">Všeobecné obchodní podmínky</a> | <a href="/documents/2026-09-13 - Zásady zpracování osobních údajů - GDPR.pdf">GDPR</a>
+                </span>
+            </footer>
         </section>
 
-        <footer>
-            <span>
-                © 2026 Karin Janiczková | IČO: 24584835 | Sídlo: Karvinská 1196/205, 716 00 Ostrava-Radvanice | <a href="/documents/2026-09-13 - Všeobecné obchodní podmínky - Karin Janiczková.pdf">Všeobecné obchodní podmínky</a> | <a href="/documents/2026-09-13 - Zásady zpracování osobních údajů - GDPR.pdf">GDPR</a>
-            </span>
-        </footer>
 
         <script>
             document.addEventListener("DOMContentLoaded", () => {
