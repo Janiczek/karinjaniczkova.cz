@@ -173,6 +173,79 @@
                 overflow: hidden;
             }
 
+            /* faint, static mist behind the text sections (kept low-contrast so
+               copy stays readable). Blobs sit well inside each section so they
+               fade out before reaching its edges. */
+            .recognize,
+            .what,
+            .about,
+            .expect,
+            .bio,
+            .how-it-works,
+            .faq,
+            .pricing {
+                --mist-a: none;
+                --mist-b: none;
+            }
+            .recognize {
+                --mist-a: radial-gradient(ellipse 40% 30% at 10% 40%, rgba(110, 156, 140, 0.26), transparent);
+                --mist-b: radial-gradient(ellipse 40% 30% at 92% 62%, rgba(228, 111, 88, 0.26), transparent);
+            }
+            .what {
+                --mist-a: radial-gradient(ellipse 40% 30% at 92% 40%, rgba(207, 135, 71, 0.26), transparent);
+                --mist-b: radial-gradient(ellipse 40% 30% at 8% 62%, rgba(110, 156, 140, 0.26), transparent);
+            }
+            .about {
+                --mist-a: radial-gradient(ellipse 40% 30% at 94% 38%, rgba(228, 111, 88, 0.26), transparent);
+                --mist-b: radial-gradient(ellipse 40% 30% at 6% 62%, rgba(110, 156, 140, 0.26), transparent);
+            }
+            .expect {
+                --mist-a: radial-gradient(ellipse 40% 30% at 8% 42%, rgba(207, 135, 71, 0.26), transparent);
+                --mist-b: radial-gradient(ellipse 40% 30% at 92% 58%, rgba(163, 131, 142, 0.26), transparent);
+            }
+            .bio {
+                --mist-a: radial-gradient(ellipse 40% 30% at 92% 42%, rgba(110, 156, 140, 0.26), transparent);
+                --mist-b: radial-gradient(ellipse 40% 30% at 8% 60%, rgba(228, 111, 88, 0.26), transparent);
+            }
+            .how-it-works {
+                --mist-a: radial-gradient(ellipse 40% 30% at 12% 50%, rgba(228, 111, 88, 0.26), transparent);
+                --mist-b: radial-gradient(ellipse 40% 30% at 88% 50%, rgba(207, 135, 71, 0.26), transparent);
+            }
+            .faq {
+                --mist-a: radial-gradient(ellipse 22% 45% at 18% 45%, rgba(163, 131, 142, 0.3), transparent);
+                --mist-b: radial-gradient(ellipse 22% 40% at 82% 58%, rgba(228, 111, 88, 0.24), transparent);
+            }
+            .pricing {
+                --mist-a: radial-gradient(ellipse 40% 30% at 12% 32%, rgba(163, 131, 142, 0.26), transparent);
+                --mist-b: radial-gradient(ellipse 40% 30% at 88% 68%, rgba(124, 192, 147, 0.26), transparent);
+            }
+            .recognize::before,
+            .what::before,
+            .about::before,
+            .expect::before,
+            .bio::before,
+            .how-it-works::before,
+            .faq::before,
+            .pricing::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                z-index: 0;
+                pointer-events: none;
+                background: var(--mist-a), var(--mist-b);
+            }
+            .recognize > *,
+            .what > *,
+            .about > *,
+            .expect > *,
+            .bio > *,
+            .how-it-works > *,
+            .faq > *,
+            .pricing > * {
+                position: relative;
+                z-index: 1;
+            }
+
             /* HERO — soft radial mist like reference image */
             .hero {
                 min-height: 88vh;
