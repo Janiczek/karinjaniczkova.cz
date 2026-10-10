@@ -127,6 +127,25 @@
                 letter-spacing: 0.02em;
                 color: var(--deepteal);
             }
+            .brand {
+                display: flex;
+                align-items: center;
+                gap: 1.4rem;
+            }
+            .ig-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.4rem;
+                color: var(--ink);
+                text-decoration: none;
+                font-size: 0.9375rem;
+            }
+            .ig-link svg {
+                color: #833ab4;
+            }
+            .ig-link:hover {
+                opacity: 0.8;
+            }
             nav a {
                 color: var(--ink);
                 text-decoration: none;
@@ -393,14 +412,27 @@
                 border-radius: 22px;
                 padding: 1.6rem 1.8rem 1.6rem 3.6rem;
                 position: relative;
+                display: flex;
+                align-items: center;
                 color: var(--ink);
                 box-shadow: 0 10px 30px rgba(34, 50, 45, 0.06);
+                transition:
+                    transform 0.25s ease,
+                    box-shadow 0.25s ease;
+            }
+            /* gentler than the FAQ hover, and only on real pointers */
+            @media (hover: hover) {
+                .recognize-list li:hover {
+                    transform: translateY(-1px);
+                    box-shadow: 0 12px 32px rgba(34, 50, 45, 0.085);
+                }
             }
             .recognize-list li::before {
                 content: "";
                 position: absolute;
                 left: 1.6rem;
-                top: 1.95rem;
+                top: 50%;
+                transform: translateY(-50%);
                 width: 12px;
                 height: 12px;
                 border-radius: 50%;
@@ -416,6 +448,10 @@
                 text-align: center;
                 font-size: 1.15rem;
                 color: var(--ink);
+            }
+            .recognize-cta {
+                margin-top: 2.2rem;
+                text-align: center;
             }
             .recognize-outro em {
                 font-family: "Literata", serif;
@@ -486,9 +522,27 @@
             }
 
             /* ABOUT */
+            .about {
+                display: grid;
+                grid-template-columns: minmax(0, 40rem) minmax(0, 26rem);
+                gap: 5vw;
+                justify-content: center;
+                align-items: center;
+            }
             .about-text {
                 max-width: 44rem;
-                margin: 0 auto;
+            }
+            .about-photo {
+                aspect-ratio: 2/3;
+                border-radius: 28px;
+                overflow: hidden;
+                box-shadow: 0 20px 50px rgba(27, 58, 52, 0.16);
+            }
+            .about-photo img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
             }
             .tag {
                 font-size: 0.8125rem;
@@ -503,6 +557,16 @@
                 font-size: clamp(2rem, 3.4vw, 2.7rem);
                 margin-bottom: 1.6rem;
                 color: var(--deepteal);
+            }
+            .about h2 a {
+                color: inherit;
+                text-decoration: underline;
+                text-decoration-color: var(--gold);
+                text-decoration-thickness: 2px;
+                text-underline-offset: 6px;
+            }
+            .about h2 a:hover {
+                opacity: 0.8;
             }
             .about p {
                 color: var(--ink);
@@ -1041,6 +1105,12 @@
                 }
             }
 
+            @media (max-width: 560px) {
+                .ig-link span {
+                    display: none;
+                }
+            }
+
             @media (max-width: 860px) {
                 .hero {
                     grid-template-columns: 1fr;
@@ -1054,8 +1124,13 @@
                     text-align: center;
                 }
                 .what,
+                .about,
                 .recognize-list {
                     grid-template-columns: 1fr;
+                }
+                .about-photo {
+                    max-width: 320px;
+                    justify-self: center;
                 }
                 .contact-grid {
                     grid-template-columns: 1fr;
@@ -1068,6 +1143,9 @@
                 }
                 nav a:not(.cta-small) {
                     display: none;
+                }
+                .brand {
+                    gap: 0.9rem;
                 }
                 .contact-photo {
                     max-width: 280px;
@@ -1184,7 +1262,38 @@
         </svg>
 
         <header>
-            <div class="logo">Karin Janiczková</div>
+            <div class="brand">
+                <div class="logo">Karin Janiczková</div>
+                <a
+                    class="ig-link"
+                    href="https://instagram.com/karin_taky_nevi"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Instagram @karin_taky_nevi"
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        width="20"
+                        height="20"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <rect x="3" y="3" width="18" height="18" rx="5" />
+                        <circle cx="12" cy="12" r="4" />
+                        <circle
+                            cx="17.5"
+                            cy="6.5"
+                            r="0.6"
+                            fill="currentColor"
+                        />
+                    </svg>
+                    <span>@karin_taky_nevi</span>
+                </a>
+            </div>
             <nav>
                 <a href="#o-mne">O mně</a>
                 <a href="#jak-spolupracujeme">Jak to funguje</a>
@@ -1270,8 +1379,7 @@
                     na&nbsp;autopilota.
                 </li>
                 <li>
-                    ...poznáš, co potřebují všichni kolem, ale u&nbsp;sebe jako
-                    kdyby někdo vypnul komunikační kanál.
+                    ...víš přesně, co potřebují všichni kolem, ale u&nbsp;sebe už tolik ne.
                 </li>
                 <li>
                     ...ses změnila – po&nbsp;dětech, po&nbsp;zhubnutí, ve&nbsp;vztahu,
@@ -1280,16 +1388,25 @@
                 </li>
                 <li>
                     ...máš několik možností, všechny sis rozebrala asi 150× a&nbsp;pořád
-                    nemáš tušení.
+                    nemáš tušení, jak se rozhodnout.
                 </li>
                 <li>
                     ...ti často lítají hlavou myšlenky „měla bych“, „už jsem měla být
                     někde jinde“ nebo „normální člověk by přece…“
                 </li>
                 <li>
+                    ...se tvoje tělo a hlava hádají, jestli jsi unavená nebo ne.
+                </li>
+                <li>
+                    ...máš pocit, že bys v tomhle věku už měla mít ve všem jasno.
+                </li>
+                <li>
                     ...víš, že chceš něco jinak. Jen zatím neumíš úplně říct co.
                 </li>
             </ul>
+            <div class="recognize-cta">
+                <a href="#kontakt" class="btn-primary">Jo. Tohle znám</a>
+            </div>
             <p class="recognize-outro">
                 Nemusíš přijít s&nbsp;dokonale formulovaným tématem.
                 <em>„Nevím, jen vím, že takhle už nechci“</em> úplně stačí.
@@ -1321,13 +1438,23 @@
                     A co se může stát, když na&nbsp;chvíli přestaneš poslouchat
                     všechny ostatní?
                 </h2>
+                <p>
+                    Všichni to myslí dobře: partner, kamarádky, máma. Ale&nbsp;taky
+                    tu je Instagram, TikTok, internet...
+                </p>
+                <p>
+                    Co by se stalo, kdybys našla odpověď sama v&nbsp;sobě?
+                </p>
 
                 <div class="what-items">
                     <div class="what-item">
-                        <h3>Méně „měla bych“. Víc „já chci“.</h3>
+                        <h3>Méně „měla bych“. Více „já chci“.</h3>
                         <p>
-                            Začneš líp rozlišovat, co skutečně chceš ty a&nbsp;co
-                            sis jen cestou posbírala od&nbsp;okolí.
+
+                            Začneš rozlišovat, co chceš ty a co děláš jen ze zvyku.
+                            Nebo co děláš jenom proto, že se to od tebe čeká.
+                            A třeba přijdeš na to, co už dávno nechceš, jen sis to ještě pořádně nepřiznala.
+
                         </p>
                     </div>
                     <div class="what-item">
@@ -1343,8 +1470,11 @@
                     <div class="what-item">
                         <h3>Víc důvěry v&nbsp;sebe.</h3>
                         <p>
-                            Ne proto, že ti někdo řekne správnou odpověď. Ale
-                            protože se naučíš víc věřit té svojí.
+
+                            Ne že už nikdy nebudeš pochybovat.
+                            Ale možná přestaneš hledat ujištění od pěti dalších
+                            lidí, než si dovolíš něco chtít.
+
                         </p>
                     </div>
                     <div class="what-item">
@@ -1352,12 +1482,14 @@
                         <p>
                             Můžeš zkoumat, co potřebuješ, jak si chránit svůj čas,
                             a&nbsp;začít říkat ano jen tam, kde opravdu cítíš, že je
-                            to tvoje.
+                            to tvoje. A třeba zjistíš, že „ne“ je celá věta.
                         </p>
                     </div>
                     <div class="what-item">
-                        <h3>A&nbsp;nakonec něco udělat.</h3>
+                        <h3>Uděláš si v hlavě trochu víc místa.</h3>
                         <p>
+                            Na svoje potřeby a na věci, které tě baví a naplňují.
+
                             Ne protože „už to mělo dávno být“. Ale protože sis sama
                             vybrala, že právě tohle teď dává smysl tobě.
                         </p>
@@ -1368,73 +1500,45 @@
 
         <section class="about" id="o-mne">
             <div class="about-text">
-                <h2>Jo, taky jsem se sama sobě někde cestou ztratila.</h2>
+                <h2>
+                    Proč
+                    <a
+                        href="https://instagram.com/karin_taky_nevi"
+                        target="_blank"
+                        rel="noopener"
+                        >@karin_taky_nevi</a
+                    >?
+                </h2>
                 <p>
-                    Dlouho jsem se schovávala za&nbsp;role, co byly zrovna
-                    potřeba.
+                    Protože fakt taky nevím.<br />
+                    Nevím, jestli máš odejít z&nbsp;práce.<br />
+                    Nevím, jestli máš zůstat ve vztahu.<br />
+                    Nevím, jestli máš začít podnikat.<br />
+                    Nevím, jestli máš zpomalit, přidat nebo začít úplně od nuly.<br />
                 </p>
                 <p>
-                    Máma. Partnerka. Ta zodpovědná. Ta, co všechno zařídí. Ta, co
-                    přece všechno zvládne a&nbsp;nikdy nezklame.
+                    Moje práce není vědět líp než ty, co máš dělat se svým
+                    životem.<br />
+                    Moje práce je být u&nbsp;toho, když na to přicházíš ty.<br />
+                    Ptát se a poukázat ti chvíle, kdy jedeš na automat.
                 </p>
                 <p>
-                    Jenže někde mezi tím vším jsem začala zjišťovat, že v&nbsp;tom
-                    sice umím docela dobře fungovat… ale vlastně vůbec nevím, co
-                    vlastně chci já. Doopravdy.
+                    Vrátit ti něco, co jsi právě řekla a&nbsp;možná jsi to sama
+                    přeslechla.<br />
+                    Možná tě občas i pohladit proti srsti.
                 </p>
                 <p>
-                    Do toho se mi konečně podařilo zhubnout desítky kil (což byl
-                    šok), hledala jsem svoje místo profesně a&nbsp;obecně jsem
-                    přemýšlela, co mě vlastně naplňuje v&nbsp;životě.
+                    A&nbsp;hlavně ti do toho necpat svoje vlastní řešení.
                 </p>
-                <p>
-                    Hlavou mi jela otázka: <em>Kdo sakra vlastně jsem?</em><br />
-                    A&nbsp;taky: <em>Neměla bych tohle už dávno vědět?</em>
-                </p>
-                <p>Spoiler: neměla.</p>
-                <p>
-                    Žádné velké osvícení se nekonalo. Spíš jsem postupně začala
-                    chytat svoje vlastní „musím“, „tohle se ode mě čeká“
-                    a&nbsp;„správně by bylo…“ přímo při činu.
-                </p>
-                <p>A&nbsp;dělám to doteď.</p>
-                <p>
-                    Pořád někdy pochybuju. Pořád mám tendenci všechno analyzovat.
-                    Pořád se učím nastavovat hranice, nebýt na&nbsp;sebe zlá
-                    a&nbsp;nebrat každý cizí názor jako další zaručený návod
-                    k&nbsp;životu.
-                </p>
-                <p>Takže ne — nemám život vyřešený.</p>
-                <p>
-                    Vím ale, jaké je ztratit vlastní hlas mezi všemi ostatními.
-                    A&nbsp;taky vím, jak moc může změnit chvíle, kdy na&nbsp;tebe
-                    nikdo netlačí, nikdo ti neříká, co máš dělat, a&nbsp;ty máš
-                    konečně prostor se zaposlouchat do&nbsp;sebe.
-                </p>
-                <p>A&nbsp;přesně tak vnímám koučování.</p>
-                <p>
-                    Ne jako další hotový návod.<br />
-                    Ne jako „tady máš pět kroků k&nbsp;lepšímu životu“.<br />
-                    A&nbsp;už vůbec ne jako prostor, kde ti budu vysvětlovat, co
-                    je pro tebe správně.
-                </p>
-                <p>
-                    Spíš jako místo, kde můžeš na&nbsp;chvíli odložit všechna
-                    „měla bych“, podívat se na&nbsp;to, co řešíš, z&nbsp;jiného
-                    úhlu a&nbsp;zjistit, co z&nbsp;toho všeho je vlastně opravdu
-                    tvoje.
-                </p>
-                <p>
-                    Protože možná nepotřebuješ další odpověď zvenku.
-                </p>
-                <p>Možná potřebuješ konečně slyšet tu svoji.</p>
                 <div class="about-figure">
                     <blockquote>
-                        Ode mě odpověď nedostaneš, dávno už ji v&nbsp;sobě totiž
-                        máš.
+                        Nepřináším mapu ani odpovědi. Jen světlo do míst, kde na
+                        tebe čekají tvoje vlastní.
                     </blockquote>
-                    <blockquote>Jsi ready nahlédnout dovnitř?</blockquote>
                 </div>
+            </div>
+            <div class="about-photo">
+                <img src="images/foto3.jpg" alt="Karin Janiczková" />
             </div>
         </section>
 
