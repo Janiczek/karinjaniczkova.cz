@@ -155,6 +155,12 @@
             nav a:hover {
                 color: var(--deepteal);
             }
+            .logo,
+            .ig-link,
+            nav,
+            nav a {
+                white-space: nowrap;
+            }
             .cta-small {
                 background: var(--deepteal);
                 color: var(--cream);
@@ -597,7 +603,9 @@
                 color: var(--deepteal);
             }
             .bio .btn-primary {
-                margin: 0.8rem 0 1.4rem;
+                display: block;
+                width: fit-content;
+                margin: 2.4rem auto 1.4rem;
             }
             .bio p.bio-ig {
                 font-size: 0.95rem;
@@ -959,10 +967,14 @@
                 opacity: 0.75;
             }
             .price-card ul {
-                margin: 1.4rem 0 2rem -0.4rem;
+                margin: 0.4rem 0 0;
+                padding-left: 1.2rem;
+            }
+            .price-card ul + p {
+                margin-top: 1rem;
             }
             .price-card li {
-                padding: 0.4rem 0 0 0.4rem;
+                padding: 0.4rem 0 0 0.2rem;
                 font-size: 1rem;
                 font-weight: 500;
             }
@@ -978,10 +990,23 @@
                 text-align: center;
                 align-self: center;
                 box-sizing: border-box;
-                margin-top: 4rem;
+                margin-top: 2.5rem;
                 padding-left: 4rem;
                 padding-right: 4rem;
                 border: 1.5px solid var(--deepteal);
+            }
+
+            .pricing-undecided {
+                text-align: center;
+                max-width: 44ch;
+                margin: 4rem auto 0;
+            }
+            .pricing-undecided h3 {
+                font-size: 1.6rem;
+                color: var(--deepteal);
+            }
+            .pricing-undecided p {
+                margin-top: 1rem;
             }
 
             /* KONTAKT */
@@ -1264,6 +1289,19 @@
             }
 
             @media (max-width: 1100px) {
+                header {
+                    padding: 20px 4vw;
+                }
+                .brand {
+                    gap: 1rem;
+                }
+                nav a {
+                    font-size: 0.9375rem;
+                    margin-left: 1rem;
+                }
+                .cta-small {
+                    padding: 8px 16px;
+                }
                 .pricing-grid {
                     gap: 1.2rem;
                 }
@@ -1278,6 +1316,13 @@
             @media (max-width: 560px) {
                 .ig-link span {
                     display: none;
+                }
+            }
+
+            @media (max-width: 1000px) {
+                .pricing-grid {
+                    grid-template-columns: 1fr;
+                    max-width: 600px;
                 }
             }
 
@@ -1308,9 +1353,6 @@
                 }
                 .cards {
                     grid-template-columns: 1fr !important;
-                }
-                .pricing-grid {
-                    grid-template-columns: 1fr;
                 }
                 nav a:not(.cta-small) {
                     display: none;
@@ -1865,51 +1907,6 @@
             </div>
         </section>
 
-        <section class="faq" id="faq">
-            <div class="section-head">
-                <h2>FAQ</h2>
-            </div>
-            <div class="faq-list">
-                <details>
-                    <summary>Co když nevím, kde začít?</summary>
-                    <p>Nevadí, od toho tady ten prostor je :)</p>
-                </details>
-                <details>
-                    <summary>Je koučování terapie?</summary>
-                    <p>Ne. A&nbsp;ani si na&nbsp;ni nehraje. :)</p>
-                    <p>
-                        Terapie řeší, proč se něco děje a&nbsp;co si neseš
-                        z&nbsp;minulosti. Koučování se víc dívá na&nbsp;to, kde jsi
-                        teď, co chceš a&nbsp;co s&nbsp;tím můžeš udělat dál.
-                    </p>
-                    <p>A&nbsp;někdy dává perfektní smysl mít obojí.</p>
-                </details>
-                <details>
-                    <summary>Poradíš mi, co mám dělat?</summary>
-                    <p>
-                        Ne. Ode mě radu nedostaneš, dávno už ji v&nbsp;sobě totiž
-                        máš.
-                    </p>
-                </details>
-                <details>
-                    <summary>Musím se zavázat k&nbsp;několika sezením?</summary>
-                    <p>
-                        Určitě ne. Možností spolupráce je vícero, vyber si tu,
-                        na&nbsp;kterou se cítíš.
-                    </p>
-                </details>
-                <details>
-                    <summary>
-                        Co když mi tahle forma seberozvoje nebude sedět?
-                    </summary>
-                    <p>
-                        Tak je to naprosto v&nbsp;pořádku. Spolupráci můžeš
-                        kdykoliv ukončit.
-                    </p>
-                </details>
-            </div>
-        </section>
-
         <section class="pricing" id="cenik">
             <div class="section-head">
                 <!--<span class="tag">TODO toto zrušit?</span>-->
@@ -1924,10 +1921,16 @@
                     <h3>„Taky nevím, tak co teď?“</h3>
                     <div class="price">1&nbsp;500&nbsp;Kč</div>
                     <p>
-                        Potřebuješ rozlousknout jednu situaci nebo rozhodnutí.
+                        Hodí se, když:
                     </p>
+                    <ul>
+                        <li>máš na výběr několik možností a nevíš, co si vybrat</li>
+                        <li>nevíš, jestli přijmout novou pracovní nabídku</li>
+                        <li>potřebuješ si utřídit priority</li>
+                        <li>potřebuješ si udělat jasno v situaci, kterou řešíš</li>
+                    </ul>
                     <p>
-                        Pojďme se na něj podívat bez dalších 150 hlasů v hlavě.
+                        Ve zkratce: když si potřebuješ udělat jasno v jednom konkrétním rozhodnutí.
                     </p>
                     <p>
                         <em>Jedno sezení, 75 minut</em>
@@ -1937,11 +1940,18 @@
                     <h3>„A kde jsem v&nbsp;tom já?“</h3>
                     <div class="price">3&nbsp;500&nbsp;Kč</div>
                     <p>
-                        Potřebuješ více času k prozkoumávání, řešíš nějaké
-                        komplexnější téma jako např. vztahy, TODO.
+                        Hodí se, když:
                     </p>
+                    <ul>
+                        <li>nevíš, kam se chceš pracovně posunout</li>
+                        <li>často říkáš ano, ikdyž bys chtěla říct ne</li>
+                        <li>máš několik různých představ o své budoucnosti a nemůžeš si vybrat</li>
+                        <li>zjistila jsi, že tvoje současné cíle už ti nedávají smysl</li>
+                        <li>chceš začít dělat něco vlastního, ale nevíš, kde začít</li>
+                        <li>chceš se naučit rozhodovat více podle vlastních priorit než podle očekávání ostatních</li>
+                    </ul>
                     <p>
-                        Tři sezení ti dají prostor situaci prozkoumat.
+                        Ve zkratce: když potřebuješ zjistit, co vlastně chceš.
                     </p>
                     <p>
                         <em>Tři sezení po 75 minutách</em>
@@ -1951,14 +1961,142 @@
                 <div class="price-card">
                     <h3>„Tak jo. Po&nbsp;mém.“</h3>
                     <div class="price">6&nbsp;500&nbsp;Kč</div>
-                    <p>Pět sezení pro chvíle, kdy&nbsp;chceš zjistit, co je
-                    opravdu tvoje...a&nbsp;začít podle toho žít.</p>
+                    <p>
+                        Hodí se, když:
+                    </p>
+                    <ul>
+                        <li>chceš se plně soustředit na svůj vlastní život</li>
+                        <li>chceš změnit profesní směřování a aktivně na tom začít pracovat</li>
+                        <li>procházíš velkou životní nebo tělesonu změnou a chceš si ujasnit, jak chceš žít dál</li>
+                        <li>chceš si nastavit hranice a najít způsob, jak je důsledně dodržovat</li>
+                    </ul>
+                    <p>
+                        Ve zkratce: když potřebuješ zjistit, co chceš, a reálně podle toho začít žít.
+                    </p>
+                    <p>
+                        <em>Pět sezení po 75 minutách</em>
+                    </p>
                     <p class="price-note">Platnost balíčku je 3&nbsp;měsíce.</p>
                 </div>
+            </div>
+            <div class="pricing-undecided">
+                <h3>Pořád nevíš?</h3>
+                <p>Opravdu nemusíš.</p>
+                <p>
+                    Na&nbsp;prvním nezávazném setkání se můžeme podívat
+                    i&nbsp;na&nbsp;to, která varianta dává smysl.<br />
+                    A&nbsp;jestli vůbec nějaká.
+                </p>
             </div>
             <a href="#kontakt" class="btn-primary">Chci úvodní setkání</a>
         </section>
 
+
+        <section class="bio" id="co-koucovani-neni">
+            <div class="bio-text">
+                <h2>Koučování nevyřeší všechno.</h2>
+                <p>
+                    Koučování je krásná disciplína, kde můžeš prožít
+                    transformační rozhovory.
+                </p>
+                <p>
+                    Dává smysl ve chvíli, kdy chceš něco prozkoumat, rozhodnout,
+                    změnit nebo si v&nbsp;sobě udělat větší jasno.
+                </p>
+                <p>
+                    <strong>Není léčbou, nenahrazuje psychoterapii ani jinou
+                    odbornou péči.</strong>
+                </p>
+                <p>
+                    A&nbsp;pokud zjistím, že to, co řešíš, patří spíš jinam, tak
+                    ti to řeknu.
+                </p>
+            </div>
+        </section>
+
+        <section class="faq" id="faq">
+            <div class="section-head">
+                <h2>FAQ</h2>
+            </div>
+            <div class="faq-list">
+                <details>
+                    <summary>Co vlastně můžu na&nbsp;koučování řešit?</summary>
+                    <p>Cokoli, u&nbsp;čeho hledáš svoje „co teď“.</p>
+                    <p>
+                        Návrat do&nbsp;práce po&nbsp;rodičovské.<br />
+                        Změnu těla.<br />
+                        Vztah k&nbsp;sobě.<br />
+                        Hranice.<br />
+                        Rozhodování.<br />
+                        Práci.<br />
+                        Vztahy.<br />
+                        Pocit, že stojíš na&nbsp;místě.<br />
+                        „Něco mi nesedí a&nbsp;já vlastně nevím co.“
+                    </p>
+                </details>
+                <details>
+                    <summary>Co když vůbec nevím, o&nbsp;čem mluvit?</summary>
+                    <p>
+                        Nevadí. Společně to můžeme rozklíčovat.
+                    </p>
+                </details>
+                <details>
+                    <summary>Je koučování terapie?</summary>
+                    <p>Ne. A&nbsp;ani si na&nbsp;ni nehraje. :)</p>
+                    <p>
+                        Terapie řeší, proč se něco děje a&nbsp;co si neseš
+                        z&nbsp;minulosti. Koučování se víc dívá na&nbsp;to, kde jsi
+                        teď, co chceš a&nbsp;co s&nbsp;tím můžeš udělat dál.
+                    </p>
+                    <p>A&nbsp;někdy dává perfektní smysl mít obojí.</p>
+                </details>
+                <details>
+                    <summary>Poradíš mi, co mám dělat?</summary>
+                    <p>Ne.</p>
+                    <p>
+                        A&nbsp;někdy tě to možná bude trochu štvát.<br />
+                        Protože jasná rada typu „udělej tohle“ je lákavá.
+                    </p>
+                    <p>
+                        Jenže moje odpověď by pořád byla moje.<br />
+                        A&nbsp;ty potřebuješ zjistit tu svoji.
+                    </p>
+                </details>
+                <details>
+                    <summary>Musím se zavázat k&nbsp;několika sezením?</summary>
+                    <p>
+                        Určitě ne. Nejdřív se potkáme na krátkém nezávazném
+                        hovoru. Až potom se rozhodneš, jestli chceš pokračovat a
+                        jak.
+                    </p>
+                </details>
+                <details>
+                    <summary>
+                        Co když zjistíme, že koučování není to, co potřebuju?
+                    </summary>
+                    <p>
+                        Tak je to v&nbsp;pořádku a řeknu ti to.
+                    </p>
+                </details>
+                <details>
+                    <summary>
+                        Co když mám téma, které mi přijde trapné nebo banální?
+                    </summary>
+                    <p>
+                        Pro tebe očividně banální není, když ti běhá hlavou.
+                        To mi jako důvod úplně stačí.
+                    </p>
+                </details>
+                <details>
+                    <summary>Je naše koučování důvěrné?</summary>
+                    <p>
+                        Ano. S informacemi, které přineseš do koučovacího
+                        prostoru, zacházím důvěrně a v souladu s profesními a
+                        etickými pravidly.
+                    </p>
+                </details>
+            </div>
+        </section>
 
         <section class="contact" id="kontakt">
             <div class="mist-layer mist-contact">
